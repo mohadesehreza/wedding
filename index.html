@@ -2,27 +2,39 @@
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <title>پیوند عاشقانه رضا و محدثه</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+  />
+
+  <title>دعوت‌نامه رضا و محدثه</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Cormorant+Garamond:wght@500;600&family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Nastaliq+Urdu:wght@400;700&family=Vazirmatn:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
 
   <style>
     :root {
-      --bg-dark: #050403;
-      --gold: #dfba6b;
-      --gold-strong: #f1cf87;
-      --glass: rgba(15, 12, 10, 0.6);
-      --glass-strong: rgba(9, 7, 6, 0.94);
-      --text-light: #f7f4ef;
-      --muted: rgba(255, 255, 255, 0.64);
-      --muted-dim: rgba(255, 255, 255, 0.42);
+      --bg: #070605;
+      --bg-soft: #100d0a;
+      --gold: #dcb56a;
+      --gold-light: #f2d493;
+      --gold-dark: #99783d;
+      --white: #fffaf2;
+      --muted: rgba(255, 250, 242, 0.66);
+      --muted-2: rgba(255, 250, 242, 0.44);
+      --glass: rgba(15, 12, 9, 0.62);
+      --glass-dark: rgba(10, 8, 6, 0.96);
+
+      --font-fa: "Vazirmatn", sans-serif;
       --font-script: "Noto Nastaliq Urdu", serif;
-      --font-serif: "Cormorant Garamond", serif;
-      --font-sans: "Vazirmatn", sans-serif;
-      --transition-smooth: 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --font-en: "Cormorant Garamond", serif;
+
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     * {
@@ -32,17 +44,17 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    html, body {
+    html,
+    body {
       width: 100%;
-      height: 100%;
+      min-height: 100%;
       overflow: hidden;
       background:
-        radial-gradient(circle at 20% 15%, rgba(223, 186, 107, 0.08), transparent 28%),
-        radial-gradient(circle at 82% 18%, rgba(223, 186, 107, 0.05), transparent 22%),
-        radial-gradient(circle at 50% 100%, rgba(223, 186, 107, 0.06), transparent 30%),
-        linear-gradient(180deg, #0a0705 0%, var(--bg-dark) 100%);
-      color: var(--text-light);
-      font-family: var(--font-sans);
+        radial-gradient(circle at 15% 15%, rgba(220, 181, 106, 0.11), transparent 26%),
+        radial-gradient(circle at 90% 20%, rgba(220, 181, 106, 0.07), transparent 24%),
+        linear-gradient(160deg, #100c08 0%, #050403 58%, #0d0906 100%);
+      color: var(--white);
+      font-family: var(--font-fa);
     }
 
     body::before {
@@ -50,76 +62,80 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      background:
-        linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
-      background-size: 24px 24px;
-      mask-image: radial-gradient(circle at center, black 35%, transparent 100%);
-      opacity: 0.25;
+      opacity: 0.17;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 26px 26px;
+      mask-image: radial-gradient(circle at center, #000 20%, transparent 90%);
+    }
+
+    button {
+      font-family: inherit;
     }
 
     .page-wrapper {
+      width: 100%;
       min-height: 100svh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 12px;
+      padding: 10px;
       position: relative;
       isolation: isolate;
     }
 
-    .ambient-blur {
-      position: absolute;
+    .ambient-light {
+      position: fixed;
       inset: 0;
-      pointer-events: none;
       overflow: hidden;
+      pointer-events: none;
+      z-index: -1;
     }
 
-    .ambient-blur::before,
-    .ambient-blur::after {
+    .ambient-light::before,
+    .ambient-light::after {
       content: "";
       position: absolute;
       border-radius: 50%;
-      filter: blur(60px);
-      opacity: 0.55;
+      filter: blur(65px);
+      pointer-events: none;
     }
 
-    .ambient-blur::before {
-      width: 220px;
-      height: 220px;
-      top: 8%;
-      right: -40px;
-      background: rgba(223, 186, 107, 0.08);
+    .ambient-light::before {
+      width: 230px;
+      height: 230px;
+      right: -80px;
+      top: 7%;
+      background: rgba(215, 167, 75, 0.13);
     }
 
-    .ambient-blur::after {
-      width: 180px;
-      height: 180px;
-      bottom: 10%;
-      left: -30px;
-      background: rgba(223, 186, 107, 0.06);
+    .ambient-light::after {
+      width: 210px;
+      height: 210px;
+      left: -90px;
+      bottom: 8%;
+      background: rgba(164, 104, 36, 0.10);
     }
 
     .card {
+      width: min(100%, 420px);
+      height: min(94svh, 790px);
       position: relative;
-      width: min(100%, 410px);
-      height: min(94svh, 780px);
-      border-radius: 32px;
       overflow: hidden;
+      border-radius: 32px;
       background: var(--glass);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255,255,255,0.08);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      box-shadow:
+        0 28px 80px rgba(0, 0, 0, 0.82),
+        inset 0 1px 0 rgba(255, 255, 255, 0.10);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
-      display: flex;
-      flex-direction: column;
     }
 
     .photo-container {
       position: absolute;
       inset: 0;
-      width: 100%;
-      height: 100%;
       z-index: 1;
       overflow: hidden;
     }
@@ -129,333 +145,485 @@
       height: 100%;
       object-fit: cover;
       object-position: center;
-      filter: saturate(0.68) contrast(1.05) brightness(0.42);
-      transform: scale(1.02);
-      transition: transform 2s cubic-bezier(0.22, 1, 0.36, 1);
+      filter:
+        brightness(0.40)
+        saturate(0.70)
+        contrast(1.05);
+      transform: scale(1.03);
+      transition: transform 2.5s var(--ease);
     }
 
     .card:hover .photo-background-img {
-      transform: scale(1.06);
+      transform: scale(1.07);
     }
 
-    .vignette-effect {
+    .photo-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(5,4,3,0.1) 0%, rgba(5,4,3,0.4) 40%, rgba(5,4,3,0.92) 100%);
-      pointer-events: none;
       z-index: 2;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(4, 3, 2, 0.20) 0%,
+          rgba(4, 3, 2, 0.22) 30%,
+          rgba(4, 3, 2, 0.55) 63%,
+          rgba(4, 3, 2, 0.97) 100%
+        );
+    }
+
+    .photo-overlay::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        circle at 50% 35%,
+        transparent 0%,
+        rgba(0, 0, 0, 0.18) 55%,
+        rgba(0, 0, 0, 0.38) 100%
+      );
+    }
+
+    .floating-particles {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--gold-light);
+      box-shadow: 0 0 12px 3px rgba(242, 212, 147, 0.45);
+      opacity: 0;
+      animation: floatParticle linear infinite;
+    }
+
+    .particle:nth-child(1) {
+      right: 14%;
+      bottom: 24%;
+      animation-duration: 7s;
+      animation-delay: 1s;
+    }
+
+    .particle:nth-child(2) {
+      right: 72%;
+      bottom: 37%;
+      animation-duration: 8s;
+      animation-delay: 2.5s;
+    }
+
+    .particle:nth-child(3) {
+      right: 32%;
+      bottom: 16%;
+      animation-duration: 6s;
+      animation-delay: 0.8s;
+    }
+
+    .particle:nth-child(4) {
+      right: 82%;
+      bottom: 58%;
+      animation-duration: 9s;
+      animation-delay: 4s;
+    }
+
+    .particle:nth-child(5) {
+      right: 52%;
+      bottom: 49%;
+      animation-duration: 7.5s;
+      animation-delay: 3s;
     }
 
     .content-panel {
       position: relative;
+      z-index: 4;
+      width: 100%;
       height: 100%;
-      z-index: 3;
+      padding: 26px 20px 21px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 28px 20px 24px;
       text-align: center;
     }
 
     .top-brand {
+      width: 100%;
       display: flex;
       align-items: center;
-      justify-content: space-between;
       gap: 10px;
       opacity: 0;
-      transform: translateY(-10px);
-      animation: fadeUp 0.9s 0.2s forwards;
+      transform: translateY(-8px);
+      animation: fadeUp 0.8s 0.15s forwards;
     }
 
-    .brand-eyebrow {
+    .brand-text {
+      color: var(--gold-light);
       font-size: 9px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 600;
+      letter-spacing: 2.8px;
       white-space: nowrap;
+      text-transform: uppercase;
+      font-weight: 600;
     }
 
     .brand-line {
       flex: 1;
       height: 1px;
-      background: linear-gradient(90deg, transparent 0%, rgba(223, 186, 107, 0.35) 50%, transparent 100%);
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(220, 181, 106, 0.5),
+        transparent
+      );
     }
 
     .hero-section {
-      margin: auto 0;
+      width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 12px;
+      justify-content: center;
+      margin: auto 0;
+      gap: 10px;
     }
 
-    .seal-container {
+    .seal {
+      width: 112px;
+      height: 112px;
       position: relative;
-      width: 120px;
-      height: 120px;
       display: grid;
       place-items: center;
+      margin-bottom: 2px;
       opacity: 0;
-      transform: scale(0.92);
-      animation: popIn 1s 0.35s forwards;
-      margin-bottom: 6px;
+      transform: scale(0.88);
+      animation: sealIn 1s 0.25s forwards;
     }
 
-    .seal-ring-outer {
+    .seal::before,
+    .seal::after {
+      content: "";
       position: absolute;
+      border-radius: 50%;
+    }
+
+    .seal::before {
       inset: 0;
-      border-radius: 50%;
-      border: 1px solid rgba(223, 186, 107, 0.22);
-      animation: spinClockwise 20s linear infinite;
+      border: 1px solid rgba(220, 181, 106, 0.34);
+      box-shadow:
+        0 0 24px rgba(220, 181, 106, 0.08),
+        inset 0 0 20px rgba(220, 181, 106, 0.06);
+      animation: rotate 20s linear infinite;
     }
 
-    .seal-ring-inner {
-      position: absolute;
-      inset: 8px;
-      border-radius: 50%;
-      border: 1px dashed rgba(223, 186, 107, 0.18);
-      animation: spinCounter 24s linear infinite;
+    .seal::after {
+      inset: 9px;
+      border: 1px dashed rgba(220, 181, 106, 0.30);
+      animation: rotateReverse 22s linear infinite;
     }
 
     .seal-center {
-      width: 82px;
-      height: 82px;
-      border-radius: 50%;
+      width: 76px;
+      height: 76px;
       display: grid;
       place-items: center;
+      border-radius: 50%;
       background:
-        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08), transparent 30%),
-        linear-gradient(145deg, rgba(223,186,107,0.12), rgba(223,186,107,0.02));
-      border: 1px solid rgba(223, 186, 107, 0.22);
+        radial-gradient(circle at 30% 22%, rgba(255,255,255,0.14), transparent 28%),
+        linear-gradient(145deg, rgba(235, 193, 105, 0.18), rgba(122, 82, 31, 0.07));
+      border: 1px solid rgba(242, 212, 147, 0.35);
       box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.06),
-        0 10px 24px rgba(0,0,0,0.35);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
+        inset 0 1px 0 rgba(255,255,255,0.12),
+        0 12px 28px rgba(0,0,0,0.34);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
 
-    .seal-monogram {
-      font-family: var(--font-serif);
-      font-size: 32px;
+    .monogram {
+      direction: ltr;
+      font-family: var(--font-en);
+      font-size: 31px;
       font-weight: 600;
-      color: var(--gold-strong);
-      line-height: 1;
+      letter-spacing: 2px;
+      color: var(--gold-light);
       transform: translateY(-2px);
     }
 
-    .badge-chip {
+    .small-badge {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 8px 14px;
+      gap: 7px;
+      padding: 6px 13px;
+      border: 1px solid rgba(255,255,255,0.10);
       border-radius: 999px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
-      color: var(--muted);
-      font-size: 11px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      background: rgba(255,255,255,0.045);
+      color: rgba(255,255,255,0.70);
+      font-size: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       opacity: 0;
-      transform: translateY(10px);
-      animation: fadeUp 0.9s 0.45s forwards;
+      transform: translateY(8px);
+      animation: fadeUp 0.8s 0.44s forwards;
     }
 
-    .badge-chip::before {
+    .small-badge::before {
       content: "";
       width: 5px;
       height: 5px;
       border-radius: 50%;
-      background: var(--gold);
+      background: var(--gold-light);
+      box-shadow: 0 0 8px var(--gold);
     }
 
     .couple-names {
+      margin-top: 2px;
+      color: #fffaf2;
       font-family: var(--font-script);
-      font-size: clamp(44px, 11vw, 68px);
-      line-height: 1.38;
-      color: #fff;
-      text-shadow: 0 4px 18px rgba(0,0,0,0.46);
-      opacity: 0;
-      transform: translateY(12px);
-      animation: fadeUp 1s 0.55s forwards;
-    }
-
-    .romantic-subtext {
-      max-width: 270px;
-      font-family: var(--font-script);
-      font-size: clamp(16px, 4vw, 19px);
-      line-height: 1.95;
-      color: var(--muted);
-      opacity: 0;
-      transform: translateY(12px);
-      animation: fadeUp 1s 0.7s forwards;
-    }
-
-    .title-divider {
-      width: 150px;
-      height: 20px;
-      position: relative;
+      font-size: clamp(43px, 11vw, 66px);
+      line-height: 1.45;
+      font-weight: 700;
+      text-shadow:
+        0 3px 18px rgba(0,0,0,0.58),
+        0 0 30px rgba(244, 210, 140, 0.06);
       opacity: 0;
       transform: translateY(10px);
-      animation: fadeUp 1s 0.82s forwards;
+      animation: fadeUp 0.9s 0.55s forwards;
     }
 
-    .title-divider::before,
-    .title-divider::after {
+    .divider {
+      width: 155px;
+      height: 18px;
+      position: relative;
+      opacity: 0;
+      transform: translateY(8px);
+      animation: fadeUp 0.8s 0.68s forwards;
+    }
+
+    .divider::before,
+    .divider::after {
       content: "";
       position: absolute;
       top: 50%;
-      width: 58px;
+      width: 59px;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(223, 186, 107, 0.5));
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(220, 181, 106, 0.68)
+      );
     }
 
-    .title-divider::before { right: 0; }
-    .title-divider::after { left: 0; transform: scaleX(-1); }
+    .divider::before {
+      right: 0;
+    }
 
-    .title-divider span {
+    .divider::after {
+      left: 0;
+      transform: scaleX(-1);
+    }
+
+    .divider-center {
       position: absolute;
-      left: 50%;
       top: 50%;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      border: 1px solid rgba(223, 186, 107, 0.4);
+      left: 50%;
+      width: 9px;
+      height: 9px;
+      transform: translate(-50%, -50%) rotate(45deg);
+      border: 1px solid var(--gold);
+      background: rgba(220,181,106,0.13);
+      box-shadow: 0 0 10px rgba(220,181,106,0.18);
+    }
+
+    .romantic-text {
+      max-width: 300px;
+      color: rgba(255, 250, 242, 0.80);
+      font-family: var(--font-script);
+      font-size: clamp(16px, 4vw, 19px);
+      line-height: 2;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.40);
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeUp 0.9s 0.76s forwards;
+    }
+
+    .love-note {
+      position: relative;
+      max-width: 305px;
+      margin-top: 1px;
+      padding: 10px 15px;
+      border-radius: 18px;
+      color: rgba(255, 250, 242, 0.79);
+      font-size: 11.5px;
+      line-height: 1.9;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255,255,255,0.065),
+          rgba(255,255,255,0.018)
+        );
+      border: 1px solid rgba(220, 181, 106, 0.18);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.07),
+        0 12px 26px rgba(0,0,0,0.16);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeUp 0.9s 0.88s forwards;
+    }
+
+    .love-note::before {
+      content: "✦";
+      position: absolute;
+      top: -9px;
+      right: 18px;
+      color: var(--gold-light);
+      font-size: 13px;
+      background: #21180e;
+      padding: 0 5px;
+      line-height: 1;
+    }
+
+    .love-note strong {
+      color: var(--gold-light);
+      font-weight: 600;
     }
 
     .bottom-widget {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 11px;
       opacity: 0;
-      transform: translateY(12px);
-      animation: fadeUp 1s 0.95s forwards;
+      transform: translateY(10px);
+      animation: fadeUp 0.9s 1s forwards;
     }
 
     .summary-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
+      gap: 9px;
     }
 
     .summary-item {
-      padding: 10px;
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 9px 8px;
+      border-radius: 15px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.075);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
     }
 
     .summary-label {
+      margin-bottom: 3px;
+      color: var(--gold-light);
       font-size: 9px;
-      color: var(--gold);
-      margin-bottom: 4px;
     }
 
     .summary-value {
-      font-size: 12px;
       color: #fff;
+      font-size: 11.5px;
       font-weight: 500;
     }
 
     .action-btn {
-      position: relative;
       width: 100%;
-      min-height: 52px;
-      border: 1px solid rgba(223, 186, 107, 0.5);
+      min-height: 50px;
+      border: 1px solid rgba(235, 193, 105, 0.58);
       border-radius: 999px;
-      background: rgba(223, 186, 107, 0.02);
-      color: var(--text-light);
-      font: 500 13px var(--font-sans);
+      color: var(--white);
+      background:
+        linear-gradient(
+          110deg,
+          rgba(220,181,106,0.035),
+          rgba(220,181,106,0.12),
+          rgba(220,181,106,0.035)
+        );
+      font-size: 12px;
       cursor: pointer;
-      transition: var(--transition-smooth);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+      box-shadow:
+        0 12px 28px rgba(0,0,0,0.26),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+      transition: 0.35s var(--ease);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .action-btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: -40%;
+      width: 25%;
+      transform: skewX(-20deg);
+      background: rgba(255,255,255,0.18);
+      transition: right 0.6s var(--ease);
+    }
+
+    .action-btn:hover::before {
+      right: 120%;
     }
 
     .action-btn:hover {
-      border-color: rgba(241, 207, 135, 0.85);
-      background: rgba(223, 186, 107, 0.05);
+      border-color: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow:
+        0 15px 32px rgba(0,0,0,0.32),
+        0 0 24px rgba(220,181,106,0.11);
     }
 
-    .details-modal,
-    .map-modal {
+    .modal {
       position: absolute;
       inset: 0;
-      padding: 24px 20px 20px;
+      z-index: 10;
+      padding: 22px 18px 18px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      background: var(--glass-strong);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(220,181,106,0.10), transparent 36%),
+        var(--glass-dark);
       backdrop-filter: blur(28px);
       -webkit-backdrop-filter: blur(28px);
       overflow-y: auto;
-    }
-
-    .details-modal {
-      z-index: 4;
       opacity: 0;
       pointer-events: none;
-      transform: translateY(18px) scale(0.98);
-      transition: opacity 0.4s ease, transform 0.4s ease;
+      transform: translateY(16px) scale(0.98);
+      transition:
+        opacity 0.4s ease,
+        transform 0.4s var(--ease);
     }
 
-    .details-modal.is-open {
+    .modal.is-open {
       opacity: 1;
       pointer-events: auto;
       transform: translateY(0) scale(1);
     }
 
-    .map-modal {
-      z-index: 5;
-      opacity: 0;
-      pointer-events: none;
-      transform: scale(1.05);
-      transition: opacity 0.35s ease, transform 0.35s ease;
-    }
-
-    .map-modal.is-open {
-      opacity: 1;
-      pointer-events: auto;
-      transform: scale(1);
-    }
-
-    .modal-header,
-    .map-header {
+    .modal-header {
       text-align: center;
-      margin-bottom: 12px;
     }
 
-    .modal-title,
-    .map-title {
+    .modal-title {
+      color: var(--gold-light);
       font-family: var(--font-script);
-      font-size: 24px;
-      color: var(--gold-strong);
-      margin-bottom: 6px;
-    }
-
-    .modal-desc {
-      font-size: 11px;
-      color: var(--muted-dim);
-      line-height: 1.6;
-    }
-
-    .map-desc {
-      font-size: 11px;
-      color: var(--muted);
+      font-size: 25px;
       line-height: 1.8;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      padding: 10px;
-      border-radius: 12px;
-      text-align: right;
     }
 
-    .timer-wrap {
+    .modal-description {
+      margin-top: 2px;
+      color: var(--muted-2);
+      font-size: 10.5px;
+      line-height: 1.8;
+    }
+
+    .timer-box-wrap {
+      margin-top: 13px;
       padding: 10px 8px;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(223,186,107,0.1);
-      margin-bottom: 12px;
+      border-radius: 17px;
+      border: 1px solid rgba(220,181,106,0.14);
+      background: rgba(255,255,255,0.025);
     }
 
     .timer-grid {
@@ -465,71 +633,72 @@
       gap: 6px;
     }
 
-    .timer-box {
+    .timer-item {
       padding: 6px 2px;
       border-radius: 10px;
-      background: rgba(255,255,255,0.01);
-      border: 1px solid rgba(255,255,255,0.03);
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.045);
     }
 
     .timer-number {
       display: block;
+      color: #fff;
       font-size: 16px;
       font-weight: 700;
-      color: #fff;
     }
 
     .timer-label {
       display: block;
-      font-size: 9px;
-      color: var(--gold);
+      margin-top: 1px;
+      color: var(--gold-light);
+      font-size: 8.5px;
     }
 
     .timer-status {
-      margin-top: 6px;
-      font-size: 10px;
-      color: var(--muted);
+      margin-top: 7px;
+      color: var(--muted-2);
+      font-size: 9.5px;
     }
 
     .details-grid {
       display: grid;
       gap: 8px;
-      margin-bottom: 12px;
+      margin-top: 14px;
     }
 
     .detail-card {
       display: grid;
-      grid-template-columns: 34px 1fr;
+      grid-template-columns: 35px 1fr;
       align-items: center;
       gap: 10px;
-      padding: 10px 12px;
+      padding: 9px 11px;
       border-radius: 14px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.04);
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.055);
     }
 
     .detail-icon {
-      width: 34px;
-      height: 34px;
+      width: 35px;
+      height: 35px;
       display: grid;
       place-items: center;
       border-radius: 50%;
-      background: rgba(223, 186, 107, 0.06);
-      color: var(--gold-strong);
+      color: var(--gold-light);
+      background: rgba(220,181,106,0.08);
+      border: 1px solid rgba(220,181,106,0.15);
       font-size: 14px;
-      border: 1px solid rgba(223, 186, 107, 0.1);
     }
 
     .detail-label {
-      font-size: 8px;
       color: var(--gold);
+      font-size: 8.5px;
       margin-bottom: 2px;
     }
 
     .detail-value {
       color: #fff;
-      font-size: 12px;
-      line-height: 1.5;
+      font-size: 11.5px;
+      line-height: 1.6;
     }
 
     .detail-value.script-font {
@@ -539,120 +708,324 @@
 
     .modal-actions {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 10px;
-      margin-top: 14px;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 9px;
+      margin-top: auto;
+      padding-top: 14px;
     }
 
     .secondary-btn,
     .close-btn {
       min-height: 48px;
       border-radius: 999px;
-      font: 500 12px var(--font-sans);
       cursor: pointer;
-      transition: var(--transition-smooth);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
+      font-size: 11.5px;
+      transition: 0.3s var(--ease);
     }
 
     .secondary-btn {
-      background: rgba(223, 186, 107, 0.08);
-      color: var(--gold-strong);
-      border: 1px solid rgba(223, 186, 107, 0.28);
+      color: var(--gold-light);
+      background: rgba(220,181,106,0.09);
+      border: 1px solid rgba(220,181,106,0.32);
     }
 
     .close-btn {
-      background: rgba(255,255,255,0.03);
-      color: var(--text-light);
-      border: 1px solid rgba(255,255,255,0.06);
+      color: var(--white);
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.08);
     }
 
     .secondary-btn:hover,
     .close-btn:hover {
-      transform: translateY(-1px);
+      transform: translateY(-2px);
     }
 
-    .map-visual-box {
-      width: 100%;
-      height: 250px;
-      border-radius: 20px;
-      border: 1px solid rgba(223, 186, 107, 0.2);
-      margin: 12px 0;
-      position: relative;
-      overflow: hidden;
-      background: #151210;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
-    }
-
-    .map-iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      opacity: 0.82;
-      filter: grayscale(0.15) contrast(0.95) brightness(0.82);
-    }
-
-    .map-overlay {
-      position: absolute;
-      inset: 0;
+    /* Calendar */
+    .calendar-modal {
       background:
-        linear-gradient(180deg, rgba(5,4,3,0.08) 0%, rgba(5,4,3,0.22) 100%);
-      pointer-events: none;
+        radial-gradient(circle at 50% 7%, rgba(220,181,106,0.16), transparent 32%),
+        linear-gradient(180deg, #191108 0%, #0b0806 52%, #080605 100%);
     }
 
-    .map-pin-overlay {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -100%);
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
+    .calendar-hero {
+      text-align: center;
+      padding-top: 1px;
+    }
+
+    .calendar-kicker {
+      display: inline-flex;
       align-items: center;
+      gap: 7px;
+      color: var(--gold-light);
+      font-size: 9px;
+      letter-spacing: 1.4px;
+      margin-bottom: 5px;
+    }
+
+    .calendar-kicker::before,
+    .calendar-kicker::after {
+      content: "";
+      width: 22px;
+      height: 1px;
+      background: var(--gold-dark);
+    }
+
+    .calendar-title {
+      color: var(--gold-light);
+      font-family: var(--font-script);
+      font-size: 29px;
+      line-height: 1.7;
+      text-shadow: 0 3px 16px rgba(220,181,106,0.18);
+    }
+
+    .calendar-caption {
+      max-width: 300px;
+      margin: 1px auto 0;
+      color: rgba(255,255,255,0.62);
+      font-size: 10.5px;
+      line-height: 1.8;
+    }
+
+    .calendar-card {
+      position: relative;
+      margin-top: 15px;
+      padding: 15px 13px 13px;
+      border-radius: 25px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,0.09),
+          rgba(255,255,255,0.025) 45%,
+          rgba(220,181,106,0.045)
+        );
+      border: 1px solid rgba(220,181,106,0.23);
+      box-shadow:
+        0 22px 50px rgba(0,0,0,0.42),
+        inset 0 1px 0 rgba(255,255,255,0.11);
+    }
+
+    .calendar-card::before {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      border-radius: 19px;
+      border: 1px solid rgba(255,255,255,0.035);
       pointer-events: none;
     }
 
-    .map-pin {
-      font-size: 24px;
-      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.35));
-      animation: pinBounce 1.5s infinite alternate ease-in-out;
+    .calendar-top {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 13px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
-    .map-pin-label {
-      margin-top: 4px;
-      font-size: 10px;
-      color: var(--gold-strong);
-      background: rgba(10, 8, 7, 0.88);
-      padding: 4px 8px;
-      border-radius: 8px;
-      border: 1px solid rgba(223, 186, 107, 0.25);
-      white-space: nowrap;
-    }
-
-    .fixed-music-btn {
-      position: fixed;
-      left: 18px;
-      bottom: 18px;
-      z-index: 10;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.06);
-      background: rgba(10, 8, 7, 0.74);
-      color: var(--gold-strong);
+    .calendar-arrow {
+      width: 33px;
+      height: 33px;
       display: grid;
       place-items: center;
-      font-size: 14px;
-      cursor: pointer;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      transition: var(--transition-smooth);
+      border-radius: 50%;
+      color: var(--gold-light);
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(220,181,106,0.18);
+      font-size: 19px;
     }
 
-    .fixed-music-btn.playing {
-      border-color: rgba(223,186,107,0.4);
+    .month-title {
+      flex: 1;
+      text-align: center;
+    }
+
+    .month-fa {
+      color: var(--gold-light);
+      font-family: var(--font-script);
+      font-size: 23px;
+      line-height: 1.45;
+    }
+
+    .month-en {
+      direction: ltr;
+      margin-top: 1px;
+      color: var(--muted-2);
+      font-family: var(--font-en);
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    .calendar-subtitle {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 10px;
+      color: rgba(255,255,255,0.50);
+      font-size: 9.5px;
+      text-align: center;
+    }
+
+    .calendar-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+    }
+
+    .weekday {
+      padding-bottom: 8px;
+      color: var(--gold-light);
+      font-size: 9px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .day {
+      position: relative;
+      min-width: 0;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 13px;
+      color: rgba(255,255,255,0.82);
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.045);
+      font-size: 12px;
+      transition: 0.25s ease;
+    }
+
+    .day:hover {
+      border-color: rgba(220,181,106,0.42);
+      background: rgba(220,181,106,0.08);
+    }
+
+    .day.dim {
+      color: rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.012);
+    }
+
+    .day.special {
+      color: #241606;
+      font-weight: 700;
+      background:
+        radial-gradient(circle at 30% 22%, rgba(255,255,255,0.72), transparent 25%),
+        linear-gradient(145deg, #f5d997 0%, #d49b38 100%);
+      border-color: rgba(255,230,163,0.88);
+      box-shadow:
+        0 8px 18px rgba(220,181,106,0.32),
+        inset 0 1px 0 rgba(255,255,255,0.55);
+      transform: scale(1.07);
+      z-index: 2;
+    }
+
+    .day.special::after {
+      content: "";
+      position: absolute;
+      inset: -4px;
+      border-radius: 16px;
+      border: 1px solid rgba(242,212,147,0.28);
+      animation: pulseRing 2.3s ease-in-out infinite;
+    }
+
+    .event-tag {
+      position: absolute;
+      left: 50%;
+      bottom: 3px;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      padding: 2px 5px;
+      border-radius: 999px;
+      color: #281a07;
+      background: rgba(255,255,255,0.40);
+      font-size: 6.5px;
+      line-height: 1.25;
+    }
+
+    .calendar-event {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 13px;
+      padding: 9px 10px;
+      border-radius: 14px;
+      background: rgba(220,181,106,0.09);
+      border: 1px solid rgba(220,181,106,0.18);
+    }
+
+    .event-icon {
+      width: 29px;
+      height: 29px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      color: #251704;
+      background: linear-gradient(145deg, #f6dc9d, #d29b3e);
+      font-size: 13px;
+    }
+
+    .event-text {
+      text-align: right;
+    }
+
+    .event-title {
+      color: var(--gold-light);
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    .event-description {
+      margin-top: 2px;
+      color: rgba(255,255,255,0.58);
+      font-size: 8.5px;
+      line-height: 1.5;
+    }
+
+    .calendar-footer {
+      margin-top: auto;
+      padding-top: 15px;
+      text-align: center;
+    }
+
+    .calendar-footer-text {
+      color: rgba(255,255,255,0.56);
+      font-family: var(--font-script);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .music-btn {
+      position: fixed;
+      left: 16px;
+      bottom: 16px;
+      z-index: 30;
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--gold-light);
+      background: rgba(10,8,6,0.78);
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.38);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      cursor: pointer;
+      font-size: 15px;
+      transition: 0.3s var(--ease);
+    }
+
+    .music-btn.playing {
+      border-color: rgba(220,181,106,0.55);
+      box-shadow:
+        0 10px 24px rgba(0,0,0,0.38),
+        0 0 18px rgba(220,181,106,0.18);
     }
 
     @keyframes fadeUp {
@@ -662,351 +1035,616 @@
       }
     }
 
-    @keyframes popIn {
+    @keyframes sealIn {
       to {
         opacity: 1;
         transform: scale(1);
       }
     }
 
-    @keyframes spinClockwise {
-      to { transform: rotate(360deg); }
+    @keyframes rotate {
+      to {
+        transform: rotate(360deg);
+      }
     }
 
-    @keyframes spinCounter {
-      to { transform: rotate(-360deg); }
+    @keyframes rotateReverse {
+      to {
+        transform: rotate(-360deg);
+      }
     }
 
-    @keyframes pinBounce {
-      0% { transform: translate(-50%, -100%); }
-      100% { transform: translate(-50%, calc(-100% - 6px)); }
+    @keyframes floatParticle {
+      0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.7);
+      }
+
+      20% {
+        opacity: 0.75;
+      }
+
+      80% {
+        opacity: 0.4;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(-130px) scale(1.15);
+      }
     }
 
-    @media (max-height: 680px), (max-width: 360px) {
+    @keyframes pulseRing {
+      0%,
+      100% {
+        opacity: 0.35;
+        transform: scale(0.98);
+      }
+
+      50% {
+        opacity: 0.8;
+        transform: scale(1.04);
+      }
+    }
+
+    /* موبایل‌های کوچک */
+    @media (max-height: 700px) {
+      .page-wrapper {
+        padding: 6px;
+      }
+
       .card {
-        height: 100%;
-        border-radius: 20px;
+        height: calc(100svh - 12px);
+        border-radius: 24px;
       }
 
-      .content-panel,
-      .details-modal,
-      .map-modal {
-        padding: 16px 14px 14px;
+      .content-panel {
+        padding: 17px 15px 15px;
       }
 
-      .seal-container {
-        width: 90px;
-        height: 90px;
-        margin-bottom: 2px;
+      .seal {
+        width: 82px;
+        height: 82px;
+        margin-bottom: 0;
       }
 
       .seal-center {
-        width: 64px;
-        height: 64px;
+        width: 58px;
+        height: 58px;
       }
 
-      .seal-monogram {
-        font-size: 24px;
+      .monogram {
+        font-size: 23px;
       }
 
       .couple-names {
-        font-size: 40px;
+        font-size: 39px;
+        line-height: 1.35;
       }
 
-      .romantic-subtext {
+      .romantic-text {
         font-size: 14px;
+        line-height: 1.75;
+      }
+
+      .love-note {
+        padding: 7px 11px;
+        font-size: 10px;
         line-height: 1.7;
       }
 
-      .timer-wrap {
-        padding: 8px 6px;
-        margin-bottom: 8px;
+      .summary-item {
+        padding: 7px;
       }
 
-      .timer-number {
-        font-size: 14px;
-      }
-
-      .timer-label {
+      .summary-label {
         font-size: 8px;
       }
 
-      .details-grid {
-        gap: 6px;
+      .summary-value {
+        font-size: 10px;
       }
 
-      .detail-card {
-        padding: 8px 10px;
+      .action-btn {
+        min-height: 45px;
       }
 
-      .detail-value {
+      .calendar-card {
+        margin-top: 9px;
+        padding: 11px 10px 10px;
+      }
+
+      .calendar-grid {
+        gap: 4px;
+      }
+
+      .day {
+        border-radius: 10px;
         font-size: 11px;
       }
 
-      .map-visual-box {
-        height: 160px;
-        margin: 6px 0;
+      .event-tag {
+        font-size: 5.5px;
+        bottom: 2px;
+      }
+
+      .calendar-footer-text {
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .content-panel {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      .couple-names {
+        font-size: 35px;
+      }
+
+      .small-badge {
+        font-size: 9px;
+        padding: 5px 10px;
+      }
+
+      .romantic-text {
+        max-width: 270px;
+        font-size: 13px;
+      }
+
+      .love-note {
+        max-width: 280px;
+        font-size: 9.5px;
+      }
+
+      .calendar-title {
+        font-size: 25px;
+      }
+
+      .calendar-card {
+        padding-left: 8px;
+        padding-right: 8px;
+      }
+
+      .calendar-grid {
+        gap: 3px;
+      }
+
+      .day {
+        font-size: 10px;
+        border-radius: 8px;
+      }
+
+      .calendar-event {
+        padding: 7px;
+      }
+
+      .event-description {
+        font-size: 8px;
       }
     }
   </style>
 </head>
-<body>
-  <div class="ambient-blur"></div>
 
-  <audio id="bgm" src="1.mp3" preload="metadata" loop playsinline></audio>
+<body>
+  <div class="ambient-light"></div>
+
+  <audio id="bgMusic" src="1.mp3" preload="metadata" loop playsinline></audio>
 
   <main class="page-wrapper">
     <section class="card">
-      <div class="photo-container">
-        <img src="1.jpg" alt="Background" class="photo-background-img">
-      </div>
-      <div class="vignette-effect"></div>
 
+      <div class="photo-container">
+        <img
+          src="1.jpg"
+          alt="تصویر رضا و محدثه"
+          class="photo-background-img"
+        />
+      </div>
+
+      <div class="photo-overlay"></div>
+
+      <div class="floating-particles">
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+      </div>
+
+      <!-- صفحه اول -->
       <div class="content-panel" id="coverPage">
+
         <header class="top-brand">
-          <span class="brand-eyebrow">Wedding Invitation</span>
+          <span class="brand-text">Wedding Invitation</span>
           <span class="brand-line"></span>
         </header>
 
         <div class="hero-section">
-          <div class="seal-container">
-            <div class="seal-ring-outer"></div>
-            <div class="seal-ring-inner"></div>
+
+          <div class="seal">
             <div class="seal-center">
-              <span class="seal-monogram">R M</span>
+              <span class="monogram">R M</span>
             </div>
           </div>
 
-          <div class="badge-chip">
-            <span>دعوتی برای آغاز یک هم‌سفری جاودانه</span>
+          <div class="small-badge">
+            آغاز یک هم‌سفری عاشقانه
           </div>
 
-          <h1 class="couple-names">رضا و محدثه</h1>
+          <h1 class="couple-names">
+            رضا و محدثه
+          </h1>
 
-          <div class="title-divider"><span></span></div>
+          <div class="divider">
+            <span class="divider-center"></span>
+          </div>
 
-          <p class="romantic-subtext">
-            با شوقِ حضورتان،
-            لحظه‌ی پیوند قلب‌هایمان را
-            در کنار شما جشن می‌گیریم.
+          <p class="romantic-text">
+            در شبی که عشق، زیباترین قصه‌ی زندگی‌مان را ورق می‌زند،
+            حضورتان گرمی‌بخش جشن ماست.
           </p>
+
+          <div class="love-note">
+            همراهی شما، این شب را برای ما
+            <strong>به‌یادماندنی‌تر و زیباتر</strong>
+            خواهد کرد.
+          </div>
+
         </div>
 
         <footer class="bottom-widget">
+
           <div class="summary-grid">
             <div class="summary-item">
-              <div class="summary-label">تاریخ</div>
-              <div class="summary-value">جمعه ۱ مهر ۱۴۰۵</div>
+              <div class="summary-label">تاریخ مراسم</div>
+              <div class="summary-value">۲ دی ۱۴۰۵</div>
             </div>
+
             <div class="summary-item">
-              <div class="summary-label">شهر</div>
+              <div class="summary-label">شهر برگزاری</div>
               <div class="summary-value">تبریز</div>
             </div>
           </div>
 
-          <button class="action-btn" id="openBtn">ورود به جزئیات مراسم</button>
+          <button class="action-btn" id="openDetails">
+            ورود به جزئیات مراسم
+          </button>
+
         </footer>
       </div>
 
-      <div class="details-modal" id="detailsModal">
+      <!-- صفحه جزئیات -->
+      <div class="modal details-modal" id="detailsModal">
+
         <header class="modal-header">
-          <h2 class="modal-title">به نام آفریدگار مهر</h2>
-          <p class="modal-desc">
+          <h2 class="modal-title">
+            به نام آفریدگار مهر
+          </h2>
+
+          <p class="modal-description">
             مفتخریم در پیوند عاشقانه‌مان میزبان حضور گرم شما باشیم.
           </p>
 
-          <div class="timer-wrap">
+          <div class="timer-box-wrap">
             <div class="timer-grid">
-              <div class="timer-box">
+              <div class="timer-item">
                 <span class="timer-number" id="days">00</span>
                 <span class="timer-label">روز</span>
               </div>
-              <div class="timer-box">
+
+              <div class="timer-item">
                 <span class="timer-number" id="hours">00</span>
                 <span class="timer-label">ساعت</span>
               </div>
-              <div class="timer-box">
+
+              <div class="timer-item">
                 <span class="timer-number" id="minutes">00</span>
                 <span class="timer-label">دقیقه</span>
               </div>
-              <div class="timer-box">
+
+              <div class="timer-item">
                 <span class="timer-number" id="seconds">00</span>
                 <span class="timer-label">ثانیه</span>
               </div>
             </div>
-            <div class="timer-status" id="timerStatus">در حال محاسبه...</div>
+
+            <div class="timer-status" id="timerStatus">
+              تا شروع مراسم زمان باقی مانده است.
+            </div>
           </div>
         </header>
 
         <div class="details-grid">
+
           <div class="detail-card">
-            <span class="detail-icon">📅</span>
+            <div class="detail-icon">📅</div>
             <div>
               <div class="detail-label">تاریخ مراسم</div>
-              <div class="detail-value script-font">جمعه ۱ مهرماه ۱۴۰۵</div>
+              <div class="detail-value script-font">
+                چهار شنبه، ۲ دی‌ماه ۱۴۰۵
+              </div>
             </div>
           </div>
 
           <div class="detail-card">
-            <span class="detail-icon">⏰</span>
+            <div class="detail-icon">⏰</div>
             <div>
               <div class="detail-label">ساعت پذیرایی</div>
-              <div class="detail-value">۱۷:۰۰ تا ۲۳:۰۰</div>
+              <div class="detail-value">
+                ۱۷:۰۰ تا ۲۳:۰۰
+              </div>
             </div>
           </div>
 
           <div class="detail-card">
-            <span class="detail-icon">📍</span>
+            <div class="detail-icon">📍</div>
             <div>
               <div class="detail-label">مکان برگزاری</div>
-              <div class="detail-value">تبریز، کوی ولیعصر، انتهای خیابان مخابرات، عمارت مجلل</div>
+              <div class="detail-value">
+                تبریز، کوی ولیعصر، انتهای خیابان مخابرات، عمارت مجلل
+              </div>
             </div>
           </div>
+
         </div>
 
-        <footer class="modal-actions">
-          <button class="secondary-btn" id="openMapBtn">📍 نمایش در نقشه</button>
-          <button class="close-btn" id="closeBtn">بازگشت</button>
-        </footer>
+        <div class="modal-actions">
+          <button class="secondary-btn" id="openCalendar">
+            📅 نمایش در تقویم
+          </button>
+
+          <button class="close-btn" id="closeDetails">
+            بازگشت
+          </button>
+        </div>
+
       </div>
 
-      <div class="map-modal" id="mapModal">
-        <header class="map-header">
-          <h2 class="map-title">نمایش در نقشه</h2>
-          <p class="map-desc">
-            <strong>آدرس:</strong> تبریز، کوی ولیعصر، انتهای خیابان مخابرات، عمارت مجلل
-          </p>
-        </header>
+      <!-- صفحه تقویم -->
+      <div class="modal calendar-modal" id="calendarModal">
 
-        <div class="map-visual-box">
-          <iframe
-            class="map-iframe"
-            title="موقعیت عمارت مجلل"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=46.353836475832305%2C38.051617203468136%2C46.363836475832305%2C38.061617203468136&layer=mapnik&marker=38.056617203468136%2C46.358836475832305">
-          </iframe>
-          <div class="map-overlay"></div>
-          <div class="map-pin-overlay">
-            <span class="map-pin">📍</span>
-            <span class="map-pin-label">عمارت مجلل</span>
+        <div class="calendar-hero">
+          <div class="calendar-kicker">
+            OUR SPECIAL DAY
           </div>
+
+          <h2 class="calendar-title">
+            روزی برای همیشه
+          </h2>
+
+          <p class="calendar-caption">
+            این روز را در تقویم قلبتان به یادگار نگه دارید؛
+            روز آغاز یک فصل تازه برای رضا و محدثه.
+          </p>
         </div>
 
-        <footer style="margin-top: auto;">
-          <button class="close-btn" id="closeMapBtn" style="width: 100%;">برگشت به جزئیات</button>
-        </footer>
+        <div class="calendar-card">
+
+          <div class="calendar-top">
+            <button class="calendar-arrow" type="button">‹</button>
+
+            <div class="month-title">
+              <div class="month-fa">دی ۱۴۰۵</div>
+              <div class="month-en">DECEMBER 2026</div>
+            </div>
+
+            <button class="calendar-arrow" type="button">›</button>
+          </div>
+
+          <div class="calendar-subtitle">
+            رجب ۱۴۴۸ · یک خاطره‌ی ماندگار
+          </div>
+
+          <div class="calendar-grid">
+
+            <div class="weekday">ش</div>
+            <div class="weekday">ی</div>
+            <div class="weekday">د</div>
+            <div class="weekday">س</div>
+            <div class="weekday">چ</div>
+            <div class="weekday">پ</div>
+            <div class="weekday">ج</div>
+
+            <div class="day dim">۲۸</div>
+            <div class="day dim">۲۹</div>
+            <div class="day dim">۳۰</div>
+            <div class="day">۱</div>
+            <div class="day special">
+              ۲
+              <span class="event-tag">روز عقد</span>
+            </div>
+            <div class="day">۳</div>
+            <div class="day">۴</div>
+
+            <div class="day">۵</div>
+            <div class="day">۶</div>
+            <div class="day">۷</div>
+            <div class="day">۸</div>
+            <div class="day">۹</div>
+            <div class="day">۱۰</div>
+            <div class="day">۱۱</div>
+
+            <div class="day">۱۲</div>
+            <div class="day">۱۳</div>
+            <div class="day">۱۴</div>
+            <div class="day">۱۵</div>
+            <div class="day">۱۶</div>
+            <div class="day">۱۷</div>
+            <div class="day">۱۸</div>
+
+            <div class="day">۱۹</div>
+            <div class="day">۲۰</div>
+            <div class="day">۲۱</div>
+            <div class="day">۲۲</div>
+            <div class="day">۲۳</div>
+            <div class="day">۲۴</div>
+            <div class="day">۲۵</div>
+
+            <div class="day">۲۶</div>
+            <div class="day">۲۷</div>
+            <div class="day">۲۸</div>
+            <div class="day">۲۹</div>
+            <div class="day">۳۰</div>
+            <div class="day dim">۱</div>
+            <div class="day dim">۲</div>
+
+          </div>
+
+          <div class="calendar-event">
+            <div class="event-icon">♥</div>
+
+            <div class="event-text">
+              <div class="event-title">
+                ۲ دی‌ماه · روز عقد رضا و محدثه
+              </div>
+
+              <div class="event-description">
+                روزی که قصه‌ی ما، رنگی تازه به خود می‌گیرد.
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="calendar-footer">
+          <div class="calendar-footer-text">
+            منتظر دیدار شما در زیباترین شب زندگی‌مان هستیم
+          </div>
+
+          <button class="close-btn" id="closeCalendar">
+            بازگشت به جزئیات
+          </button>
+        </div>
+
       </div>
+
     </section>
   </main>
 
-  <button class="fixed-music-btn" id="musicBtn" aria-label="کنترل موسیقی">♫</button>
+  <button class="music-btn" id="musicButton" aria-label="کنترل موسیقی">
+    ♫
+  </button>
 
   <script>
-    const audio = document.getElementById("bgm");
-    const musicBtn = document.getElementById("musicBtn");
-    const openBtn = document.getElementById("openBtn");
-    const closeBtn = document.getElementById("closeBtn");
+    const openDetailsButton = document.getElementById("openDetails");
+    const closeDetailsButton = document.getElementById("closeDetails");
+    const openCalendarButton = document.getElementById("openCalendar");
+    const closeCalendarButton = document.getElementById("closeCalendar");
+
     const detailsModal = document.getElementById("detailsModal");
+    const calendarModal = document.getElementById("calendarModal");
 
-    const openMapBtn = document.getElementById("openMapBtn");
-    const closeMapBtn = document.getElementById("closeMapBtn");
-    const mapModal = document.getElementById("mapModal");
+    const musicButton = document.getElementById("musicButton");
+    const backgroundMusic = document.getElementById("bgMusic");
 
-    const daysEl = document.getElementById("days");
-    const hoursEl = document.getElementById("hours");
-    const minutesEl = document.getElementById("minutes");
-    const secondsEl = document.getElementById("seconds");
-    const statusEl = document.getElementById("timerStatus");
+    const daysElement = document.getElementById("days");
+    const hoursElement = document.getElementById("hours");
+    const minutesElement = document.getElementById("minutes");
+    const secondsElement = document.getElementById("seconds");
+    const timerStatus = document.getElementById("timerStatus");
 
-    let isPlaying = false;
+    /*
+      تاریخ مراسم:
+      ۲ دی ۱۴۰۵ برابر با ۲۳ دسامبر ۲۰۲۶ است.
+      ساعت زیر را می‌توانی در صورت نیاز تغییر بدهی.
+    */
+    const ceremonyDate = new Date("2026-12-23T17:00:00").getTime();
 
-    const TARGET_UTC_MS = new Date("2026-09-23T13:30:00Z").getTime();
-
-    function padNumber(num) {
-      return String(num).padStart(2, "0");
+    function twoDigits(value) {
+      return String(value).padStart(2, "0");
     }
 
     function updateCountdown() {
-      const diff = TARGET_UTC_MS - Date.now();
+      const now = Date.now();
+      const remaining = ceremonyDate - now;
 
-      if (diff <= 0) {
-        [daysEl, hoursEl, minutesEl, secondsEl].forEach((el) => {
-          el.textContent = "00";
-        });
-        statusEl.textContent = "زمان مراسم فرا رسیده یا به پایان رسیده است.";
+      if (remaining <= 0) {
+        daysElement.textContent = "۰۰";
+        hoursElement.textContent = "۰۰";
+        minutesElement.textContent = "۰۰";
+        secondsElement.textContent = "۰۰";
+        timerStatus.textContent = "لحظه‌ی باشکوه مراسم فرا رسیده است.";
         return;
       }
 
-      const days = Math.floor(diff / 86400000);
-      const hours = Math.floor((diff % 86400000) / 3600000);
-      const minutes = Math.floor((diff % 3600000) / 60000);
-      const seconds = Math.floor((diff % 60000) / 1000);
+      const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor(
+        (remaining % (1000 * 60 * 60)) / (1000 * 60)
+      );
+      const seconds = Math.floor(
+        (remaining % (1000 * 60)) / 1000
+      );
 
-      daysEl.textContent = padNumber(days);
-      hoursEl.textContent = padNumber(hours);
-      minutesEl.textContent = padNumber(minutes);
-      secondsEl.textContent = padNumber(seconds);
-      statusEl.textContent = "تا آغاز مراسم، زمان باقی مانده است.";
+      daysElement.textContent = twoDigits(days);
+      hoursElement.textContent = twoDigits(hours);
+      minutesElement.textContent = twoDigits(minutes);
+      secondsElement.textContent = twoDigits(seconds);
+      timerStatus.textContent = "تا شروع مراسم زمان باقی مانده است.";
     }
 
     async function playMusic() {
-      if (isPlaying) return;
       try {
-        audio.volume = 0.65;
-        await audio.play();
-        isPlaying = true;
-        musicBtn.classList.add("playing");
-      } catch (err) {
-        console.warn("Autoplay blocked until user interaction.");
+        await backgroundMusic.play();
+        musicButton.classList.add("playing");
+      } catch (error) {
+        console.log("برای پخش موسیقی نیاز به تعامل کاربر است.");
       }
     }
 
     function pauseMusic() {
-      audio.pause();
-      isPlaying = false;
-      musicBtn.classList.remove("playing");
+      backgroundMusic.pause();
+      musicButton.classList.remove("playing");
     }
 
-    function toggleMusic() {
-      if (audio.paused) {
-        playMusic();
-      } else {
-        pauseMusic();
-      }
-    }
-
-    openBtn.addEventListener("click", () => {
+    openDetailsButton.addEventListener("click", () => {
       detailsModal.classList.add("is-open");
       playMusic();
     });
 
-    closeBtn.addEventListener("click", () => {
+    closeDetailsButton.addEventListener("click", () => {
       detailsModal.classList.remove("is-open");
-      mapModal.classList.remove("is-open");
+      calendarModal.classList.remove("is-open");
     });
 
-    openMapBtn.addEventListener("click", () => {
-      mapModal.classList.add("is-open");
+    openCalendarButton.addEventListener("click", () => {
+      calendarModal.classList.add("is-open");
     });
 
-    closeMapBtn.addEventListener("click", () => {
-      mapModal.classList.remove("is-open");
+    closeCalendarButton.addEventListener("click", () => {
+      calendarModal.classList.remove("is-open");
     });
 
-    musicBtn.addEventListener("click", toggleMusic);
+    musicButton.addEventListener("click", () => {
+      if (backgroundMusic.paused) {
+        playMusic();
+      } else {
+        pauseMusic();
+      }
+    });
 
-    const unlockEvents = ["touchstart", "click", "scroll"];
-
-    function unlockAudio() {
+    /*
+      تلاش برای فعال‌سازی موسیقی بعد از اولین تعامل کاربر
+    */
+    function unlockMusic() {
       playMusic();
-      unlockEvents.forEach((eventName) => {
-        window.removeEventListener(eventName, unlockAudio, { passive: true });
-      });
+
+      window.removeEventListener("click", unlockMusic);
+      window.removeEventListener("touchstart", unlockMusic);
     }
 
-    unlockEvents.forEach((eventName) => {
-      window.addEventListener(eventName, unlockAudio, { passive: true });
+    window.addEventListener("click", unlockMusic, {
+      once: true,
+      passive: true
+    });
+
+    window.addEventListener("touchstart", unlockMusic, {
+      once: true,
+      passive: true
     });
 
     updateCountdown();
