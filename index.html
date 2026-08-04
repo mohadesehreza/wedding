@@ -786,6 +786,7 @@
       line-height: 1.8;
     }
 
+    /* افکت درخشش طلایی دور کل تقویم هنگام زدن روز دوم */
     .calendar-card {
       position: relative;
       margin-top: 15px;
@@ -798,10 +799,18 @@
           rgba(255,255,255,0.025) 45%,
           rgba(220,181,106,0.045)
         );
-      border: 1px solid rgba(220,181,106,0.23);
+      border: 1px solid rgba(220, 181, 106, 0.23);
       box-shadow:
-        0 22px 50px rgba(0,0,0,0.42),
-        inset 0 1px 0 rgba(255,255,255,0.11);
+        0 22px 50px rgba(0, 0, 0, 0.42),
+        inset 0 1px 0 rgba(255, 255, 255, 0.11);
+      transition: box-shadow 0.6s var(--ease), border-color 0.6s var(--ease);
+    }
+
+    .calendar-card.glow-active {
+      border-color: rgba(220, 181, 106, 0.7);
+      box-shadow:
+        0 0 25px rgba(220, 181, 106, 0.35),
+        0 22px 50px rgba(0, 0, 0, 0.5);
     }
 
     .calendar-card::before {
@@ -920,6 +929,7 @@
         inset 0 1px 0 rgba(255,255,255,0.55);
       transform: scale(1.07);
       z-index: 2;
+      cursor: pointer;
     }
 
     .day.special::after {
@@ -929,6 +939,19 @@
       border-radius: 16px;
       border: 1px solid rgba(242,212,147,0.28);
       animation: pulseRing 2.3s ease-in-out infinite;
+    }
+
+    /* انیمیشن لرزش و تپش هیجانی هنگام لمس روز عقد */
+    .day.special.celebrate {
+      animation: hapticTab 0.5s ease-out;
+    }
+
+    @keyframes hapticTab {
+      0% { transform: scale(1.07); }
+      30% { transform: scale(1.22); }
+      50% { transform: scale(0.96); }
+      80% { transform: scale(1.12); }
+      100% { transform: scale(1.07); }
     }
 
     .event-tag {
@@ -945,6 +968,7 @@
       line-height: 1.25;
     }
 
+    /* استایل باکس توضیحات پایین با افکت متحرک تغییر محتوا */
     .calendar-event {
       position: relative;
       z-index: 1;
@@ -956,6 +980,13 @@
       border-radius: 14px;
       background: rgba(220,181,106,0.09);
       border: 1px solid rgba(220,181,106,0.18);
+      transition: background 0.4s var(--ease), border-color 0.4s var(--ease), transform 0.4s var(--ease);
+    }
+
+    .calendar-event.activated {
+      background: rgba(242, 212, 147, 0.18);
+      border-color: rgba(242, 212, 147, 0.45);
+      transform: scale(1.02);
     }
 
     .event-icon {
@@ -968,10 +999,16 @@
       color: #251704;
       background: linear-gradient(145deg, #f6dc9d, #d29b3e);
       font-size: 13px;
+      transition: transform 0.5s var(--ease);
+    }
+
+    .calendar-event.activated .event-icon {
+      transform: rotate(360deg) scale(1.1);
     }
 
     .event-text {
       text-align: right;
+      transition: opacity 0.25s ease;
     }
 
     .event-title {
@@ -1026,6 +1063,25 @@
       box-shadow:
         0 10px 24px rgba(0,0,0,0.38),
         0 0 18px rgba(220,181,106,0.18);
+    }
+
+    /* سیستم پارتیکل‌ها و افکت انفجار قلب و اکلیل */
+    .party-spark {
+      position: absolute;
+      pointer-events: none;
+      z-index: 100;
+      animation: explodeSpark 1.1s cubic-bezier(0.1, 0.8, 0.25, 1) forwards;
+    }
+
+    @keyframes explodeSpark {
+      0% {
+        transform: translate(0, 0) scale(0.8) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(var(--tx), var(--ty)) scale(1.3) rotate(var(--rot));
+        opacity: 0;
+      }
     }
 
     @keyframes fadeUp {
@@ -1363,7 +1419,7 @@
             <div>
               <div class="detail-label">تاریخ مراسم</div>
               <div class="detail-value script-font">
-                چهار شنبه، ۲ دی‌ماه ۱۴۰۵
+                سه‌شنبه، ۲ دی‌ماه ۱۴۰۵
               </div>
             </div>
           </div>
@@ -1420,7 +1476,7 @@
           </p>
         </div>
 
-        <div class="calendar-card">
+        <div class="calendar-card" id="calendarCard">
 
           <div class="calendar-top">
             <button class="calendar-arrow" type="button">‹</button>
@@ -1451,7 +1507,7 @@
             <div class="day dim">۲۹</div>
             <div class="day dim">۳۰</div>
             <div class="day">۱</div>
-            <div class="day special">
+            <div class="day special" id="weddingDay">
               ۲
               <span class="event-tag">روز عقد</span>
             </div>
@@ -1492,15 +1548,15 @@
 
           </div>
 
-          <div class="calendar-event">
-            <div class="event-icon">♥</div>
+          <div class="calendar-event" id="calendarEventBox">
+            <div class="event-icon" id="eventBoxIcon">♥</div>
 
-            <div class="event-text">
-              <div class="event-title">
+            <div class="event-text" id="eventBoxText">
+              <div class="event-title" id="eventTitle">
                 ۲ دی‌ماه · روز عقد رضا و محدثه
               </div>
 
-              <div class="event-description">
+              <div class="event-description" id="eventDesc">
                 روزی که قصه‌ی ما، رنگی تازه به خود می‌گیرد.
               </div>
             </div>
@@ -1548,7 +1604,6 @@
     /*
       تاریخ مراسم:
       ۲ دی ۱۴۰۵ برابر با ۲۳ دسامبر ۲۰۲۶ است.
-      ساعت زیر را می‌توانی در صورت نیاز تغییر بدهی.
     */
     const ceremonyDate = new Date("2026-12-23T17:00:00").getTime();
 
@@ -1649,6 +1704,93 @@
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
+
+    /*
+      ======================================================
+      ایونت جذاب و انفجار ذرات با زدن روی ۲ دی (روز عقد)
+      ======================================================
+    */
+    const weddingDay = document.getElementById("weddingDay");
+    const calendarCard = document.getElementById("calendarCard");
+    const calendarEventBox = document.getElementById("calendarEventBox");
+    const eventTitle = document.getElementById("eventTitle");
+    const eventDesc = document.getElementById("eventDesc");
+
+    weddingDay.addEventListener("click", (e) => {
+      // ایجاد افکت لرزش روی خودِ خانه‌ی تقویم
+      weddingDay.classList.remove("celebrate");
+      void weddingDay.offsetWidth; // نیروی مرورگر برای ریست انیمیشن
+      weddingDay.classList.add("celebrate");
+
+      // ایجاد درخشش کلی دور کارت تقویم
+      calendarCard.classList.add("glow-active");
+      setTimeout(() => {
+        calendarCard.classList.remove("glow-active");
+      }, 2000);
+
+      // افکت تغییر متن و ظاهر باکس توضیحات
+      calendarEventBox.classList.add("activated");
+      eventTitle.style.opacity = 0;
+      eventDesc.style.opacity = 0;
+
+      setTimeout(() => {
+        eventTitle.textContent = "رضا و محدثه · پیوند دو قلب 💖";
+        eventDesc.textContent = "آغازِ یک هم‌سفری ابدی و عاشقانه در حضور شما...";
+        eventTitle.style.opacity = 1;
+        eventDesc.style.opacity = 1;
+      }, 250);
+
+      // ساخت افکت انفجاری ذرات (اکلیل‌های طلایی و قلب‌های شناور)
+      const rect = weddingDay.getBoundingClientRect();
+      const cardRect = calendarModal.getBoundingClientRect();
+      
+      // نقطه مبدا مرکز روز دوم نسبت به مدال تقویم
+      const originX = rect.left + rect.width / 2 - cardRect.left;
+      const originY = rect.top + rect.height / 2 - cardRect.top;
+
+      const particleCount = 24;
+      for (let i = 0; i < particleCount; i++) {
+        createSpark(originX, originY);
+      }
+    });
+
+    function createSpark(x, y) {
+      const spark = document.createElement("span");
+      spark.className = "party-spark";
+      
+      // تصمیم تصادفی برای گلبرگ، قلب یا اکلیل ستاره‌ای بودن ذره
+      const isHeart = Math.random() > 0.5;
+      
+      if (isHeart) {
+        spark.innerHTML = "♥";
+        spark.style.color = Math.random() > 0.5 ? "#f6c6d3" : "#dcb56a";
+        spark.style.fontSize = (Math.random() * 8 + 9) + "px";
+      } else {
+        spark.innerHTML = "✦";
+        spark.style.color = "#f2d493";
+        spark.style.fontSize = (Math.random() * 7 + 6) + "px";
+      }
+
+      // تعیین جهت تصادفی حرکت (انفجاری در زاویه ۳۶۰ درجه)
+      const angle = Math.random() * Math.PI * 2;
+      const distance = Math.random() * 85 + 45;
+      const tx = Math.cos(angle) * distance;
+      const ty = Math.sin(angle) * distance;
+      const rot = Math.random() * 360 + 120;
+
+      spark.style.left = `${x}px`;
+      spark.style.top = `${y}px`;
+      spark.style.setProperty("--tx", `${tx}px`);
+      spark.style.setProperty("--ty", `${ty}px`);
+      spark.style.setProperty("--rot", `${rot}deg`);
+
+      calendarModal.appendChild(spark);
+
+      // حذف ذره بعد از اتمام انیمیشن
+      setTimeout(() => {
+        spark.remove();
+      }, 1100);
+    }
   </script>
 </body>
 </html>
