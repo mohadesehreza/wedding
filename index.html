@@ -3,867 +3,915 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <title>دعوتنامه رضا و محدثه</title>
+  <title>پیوند عاشقانه رضا و محدثه</title>
 
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&family=Vazirmatn:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Cormorant+Garamond:wght@500;600&family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --bg:#0f0c0c;
-      --bg2:#191313;
-      --soft:#f5ede4;
-      --soft2:#dcc7b2;
-      --gold:#c9a06b;
-      --gold2:#f0c894;
-      --rose:#b78674;
-      --line:rgba(255,240,220,.12);
-      --glass:rgba(255,248,240,.06);
-      --shadow:0 24px 60px rgba(0,0,0,.42);
+    /* ==========================================
+       1. VARIABLES & RESET
+       ========================================== */
+    :root {
+      --bg-dark: #050403;
+      --gold: #dfba6b;
+      --gold-strong: #f1cf87;
+      --glass: rgba(15, 12, 10, 0.54);
+      --glass-strong: rgba(9, 7, 6, 0.86);
+      --text-light: #f7f4ef;
+      --muted: rgba(255, 255, 255, 0.64);
+      --muted-dim: rgba(255, 255, 255, 0.42);
+      
+      --font-script: "Noto Nastaliq Urdu", serif;
+      --font-serif: "Cormorant Garamond", serif;
+      --font-sans: "Vazirmatn", sans-serif;
+      
+      --transition-smooth: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      -webkit-tap-highlight-color:transparent;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    html,body{
-      width:100%;
-      height:100%;
-      overflow:hidden;
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
       background:
-        radial-gradient(circle at 50% 15%, rgba(201,160,107,.08), transparent 24%),
-        radial-gradient(circle at 15% 10%, rgba(183,134,116,.07), transparent 20%),
-        linear-gradient(180deg, #120f0f 0%, #191414 45%, #0d0a0a 100%);
-      color:var(--soft);
-      font-family:"Vazirmatn",sans-serif;
+        radial-gradient(circle at 20% 15%, rgba(223, 186, 107, 0.10), transparent 28%),
+        radial-gradient(circle at 82% 18%, rgba(223, 186, 107, 0.06), transparent 22%),
+        radial-gradient(circle at 50% 100%, rgba(223, 186, 107, 0.08), transparent 30%),
+        linear-gradient(180deg, #0a0705 0%, var(--bg-dark) 100%);
+      color: var(--text-light);
+      font-family: var(--font-sans);
     }
 
-    body{
-      position:relative;
-    }
-
-    .ambient{
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      z-index:0;
-      overflow:hidden;
-    }
-
-    .ambient::before,
-    .ambient::after{
-      content:"";
-      position:absolute;
-      border-radius:50%;
-      filter:blur(60px);
-      opacity:.28;
-      animation:orbMove 16s ease-in-out infinite;
-      will-change:transform;
-    }
-
-    .ambient::before{
-      width:240px;
-      height:240px;
-      top:-60px;
-      right:-70px;
-      background:rgba(201,160,107,.14);
-    }
-
-    .ambient::after{
-      width:210px;
-      height:210px;
-      bottom:-70px;
-      left:-60px;
-      background:rgba(183,134,116,.12);
-      animation-delay:2s;
-    }
-
-    @keyframes orbMove{
-      0%,100%{transform:translate(0,0) scale(1);}
-      50%{transform:translate(-10px,12px) scale(1.04);}
-    }
-
-    .page{
-      min-height:100svh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:8px;
-      position:relative;
-      z-index:2;
-    }
-
-    .card{
-      position:relative;
-      width:min(100%, 460px);
-      height:min(96svh, 860px);
-      border-radius:34px;
-      overflow:hidden;
-      background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
-      border:1px solid rgba(255,245,235,.09);
-      box-shadow:var(--shadow);
-      isolation:isolate;
-    }
-
-    /* اعمال افکت شیشه‌ای فقط در صورت پشتیبانی مرورگر برای جلوگیری از کندی */
-    @supports ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
-      .card {
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-      }
-    }
-
-    /* لود عکس اصلی: انیمیشن فقط روی transform اعمال شده و فیلترها ثابت هستند تا پردازنده گوشی داغ نکند */
-    .photo{
-      position:absolute;
-      inset:0;
-      background:url('1.jpg') center center / cover no-repeat;
-      transform:scale(1.05);
-      filter:brightness(.45) contrast(1.08) saturate(.72) grayscale(45%);
-      animation:heroPhoto 5.5s cubic-bezier(.25,.46,.45,.94) forwards;
-      z-index:0;
-      will-change:transform;
-    }
-
-    @keyframes heroPhoto{
-      to{
-        transform:scale(1.12);
-      }
-    }
-
-    .vignette{
-      position:absolute;
-      inset:0;
-      z-index:1;
+    /* Grid Overlay background */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
       background:
-        radial-gradient(circle at 50% 28%, rgba(255,255,255,.02), transparent 25%),
-        linear-gradient(180deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,.22) 34%, rgba(7,5,5,.55) 68%, rgba(6,4,4,.90) 100%);
+        linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+      background-size: 24px 24px;
+      mask-image: radial-gradient(circle at center, black 35%, transparent 100%);
+      opacity: 0.28;
     }
 
-    .mist{
-      position:absolute;
-      inset:0;
-      z-index:2;
-      opacity:0;
+    /* ==========================================
+       2. LAYOUT & CARDS
+       ========================================== */
+    .page-wrapper {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .ambient-blur {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .ambient-blur::before,
+    .ambient-blur::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.55;
+    }
+
+    .ambient-blur::before {
+      width: 220px;
+      height: 220px;
+      top: 8%;
+      right: -40px;
+      background: rgba(223, 186, 107, 0.10);
+      animation: driftA 10s ease-in-out infinite alternate;
+    }
+
+    .ambient-blur::after {
+      width: 180px;
+      height: 180px;
+      bottom: 10%;
+      left: -30px;
+      background: rgba(223, 186, 107, 0.08);
+      animation: driftB 12s ease-in-out infinite alternate;
+    }
+
+    .card {
+      position: relative;
+      width: min(100%, 420px);
+      height: min(92svh, 780px);
+      border-radius: 32px;
+      overflow: hidden;
+      background: var(--glass);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255,255,255,0.08);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+    }
+
+    .photo-background {
+      position: absolute;
+      inset: 0;
       background:
-        radial-gradient(circle at 50% 28%, rgba(255,248,238,.10), rgba(255,248,238,.03) 26%, transparent 42%),
-        linear-gradient(180deg, rgba(255,248,240,.00), rgba(255,248,240,.03) 24%, rgba(255,248,240,.08) 55%, rgba(255,248,240,.15) 100%);
-      animation:mistIn 1.8s ease forwards;
-      animation-delay:.8s;
+        linear-gradient(180deg, rgba(5,4,3,0.16) 0%, rgba(5,4,3,0.48) 38%, rgba(5,4,3,0.88) 100%),
+        url('1.jpg') center center / cover no-repeat;
+      filter: saturate(0.72) contrast(1.08) brightness(0.5);
+      transform: scale(1.04);
+      transition: transform 1.8s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    @keyframes mistIn{
-      from{opacity:0}
-      to{opacity:1}
+    .card:hover .photo-background {
+      transform: scale(1.08);
     }
 
-    /* نویز بسیار سبک‌تر از حالت قبل برای لود سریع‌تر کارت */
-    .grain{
-      position:absolute;
-      inset:0;
-      z-index:3;
-      opacity:.08;
-      pointer-events:none;
-      background-image:
-        radial-gradient(circle at 20% 30%, rgba(255,255,255,.12) 0 1px, transparent 2px),
-        radial-gradient(circle at 80% 70%, rgba(255,255,255,.08) 0 1px, transparent 2px);
-      background-size:160px 160px;
-      mix-blend-mode:soft-light;
+    .vignette-effect {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 25%, transparent 0%, rgba(0,0,0,0.14) 48%, rgba(0,0,0,0.52) 100%);
+      pointer-events: none;
+      z-index: 1;
     }
 
-    .frame{
-      position:absolute;
-      inset:14px;
-      border-radius:28px;
-      border:1px solid rgba(255,237,220,.10);
-      z-index:4;
-      pointer-events:none;
+    /* ==========================================
+       3. COVER PAGE CONTENT
+       ========================================== */
+    .content-panel {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 30px 22px 24px;
+      text-align: center;
     }
 
-    .frame::before{
-      content:"";
-      position:absolute;
-      inset:10px;
-      border-radius:22px;
-      border:1px solid rgba(255,237,220,.05);
+    .top-brand {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      opacity: 0;
+      transform: translateY(-10px);
+      animation: fadeUp 0.9s 0.2s forwards;
     }
 
-    .shine{
-      position:absolute;
-      inset:-30%;
-      z-index:4;
-      pointer-events:none;
-      background:linear-gradient(115deg, transparent 35%, rgba(255,255,255,.04) 48%, transparent 60%);
-      transform:translateX(-120%) rotate(7deg);
-      animation:shinePass 7.5s ease-in-out infinite;
-      animation-delay:2.5s;
-      will-change:transform;
+    .brand-eyebrow {
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      white-space: nowrap;
     }
 
-    @keyframes shinePass{
-      0%,70%,100%{transform:translateX(-120%) rotate(7deg);}
-      85%{transform:translateX(120%) rotate(7deg);}
+    .brand-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(223, 186, 107, 0.45) 50%, transparent 100%);
     }
 
-    .content{
-      position:relative;
-      z-index:6;
-      height:100%;
-      padding:22px 18px 18px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      text-align:center;
+    .hero-section {
+      margin: auto 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
     }
 
-    .top{
-      flex:0 0 auto;
+    /* Wax Seal Stamp */
+    .seal-container {
+      position: relative;
+      width: 136px;
+      height: 136px;
+      display: grid;
+      place-items: center;
+      opacity: 0;
+      transform: scale(0.92);
+      animation: popIn 1s 0.35s forwards;
     }
 
-    .brand{
-      font-family:"Noto Nastaliq Urdu",serif;
-      font-size:clamp(18px,4.4vw,28px);
-      line-height:2;
-      color:rgba(255,241,227,.92);
-      letter-spacing:.3px;
+    .seal-ring-outer {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 1px solid rgba(223, 186, 107, 0.28);
+      box-shadow: 0 0 0 8px rgba(223, 186, 107, 0.03);
+      animation: spinClockwise 20s linear infinite;
     }
 
-    .brand-line{
-      width:84px;
-      height:1px;
-      margin:4px auto 0;
-      background:linear-gradient(90deg, transparent, rgba(255,233,210,.55), transparent);
+    .seal-ring-inner {
+      position: absolute;
+      inset: 10px;
+      border-radius: 50%;
+      border: 1px dashed rgba(223, 186, 107, 0.22);
+      animation: spinCounter 24s linear infinite;
     }
 
-    .center{
-      flex:1 1 auto;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      min-height:0;
-      padding:8px 0;
-    }
-
-    .eyebrow{
-      font-size:11px;
-      letter-spacing:3px;
-      text-transform:uppercase;
-      color:rgba(255,231,208,.58);
-      margin-bottom:10px;
-    }
-
-    .names{
-      font-family:"Noto Nastaliq Urdu",serif;
-      font-size:clamp(42px,10.5vw,80px);
-      line-height:1.5;
-      color:#fff6ef;
-      text-shadow:
-        0 0 1px rgba(255,255,255,.15),
-        0 8px 28px rgba(0,0,0,.28);
-    }
-
-    .subtitle{
-      font-family:"Noto Nastaliq Urdu",serif;
-      font-size:clamp(21px,5.2vw,36px);
-      line-height:2;
-      color:rgba(255,240,226,.88);
-      margin-top:2px;
-    }
-
-    .poem{
-      margin-top:10px;
-      padding:0 6px;
-      font-family:"Noto Nastaliq Urdu",serif;
-      font-size:clamp(18px,4.5vw,29px);
-      line-height:2.05;
-      color:rgba(255,241,228,.92);
-      max-width:100%;
-    }
-
-    .poem .accent{
-      color:#f3cfab;
-    }
-
-    .envelope-wrap{
-      flex:0 0 auto;
-      display:flex;
-      justify-content:center;
-      margin-top:8px;
-    }
-
-    .envelope-btn{
-      position:relative;
-      width:min(88vw, 290px);
-      height:112px;
-      border:none;
-      background:transparent;
-      cursor:pointer;
-      outline:none;
-      transition:transform .20s ease;
-    }
-
-    .envelope-btn:active{
-      transform:scale(.985);
-    }
-
-    .envelope-shadow{
-      position:absolute;
-      bottom:-8px;
-      left:50%;
-      transform:translateX(-50%);
-      width:76%;
-      height:18px;
-      border-radius:50%;
-      background:rgba(0,0,0,.24);
-      filter:blur(8px);
-      z-index:0;
-    }
-
-    .envelope{
-      position:absolute;
-      inset:0;
-      border-radius:18px;
-      overflow:hidden;
-      background:linear-gradient(180deg, rgba(216,186,148,.90), rgba(171,134,96,.92));
-      border:1px solid rgba(255,239,214,.32);
+    .seal-center {
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.12), transparent 30%),
+        linear-gradient(145deg, rgba(223,186,107,0.18), rgba(223,186,107,0.04));
+      border: 1px solid rgba(223, 186, 107, 0.28);
       box-shadow:
-        0 14px 40px rgba(0,0,0,.22),
-        inset 0 1px 0 rgba(255,255,255,.16);
-      z-index:1;
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        0 12px 30px rgba(0,0,0,0.35),
+        0 0 24px rgba(223, 186, 107, 0.12);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
 
-    .env-top{
-      position:absolute;
-      top:0;
-      left:0;
-      width:100%;
-      height:56%;
-      background:linear-gradient(180deg, rgba(245,219,182,.95), rgba(198,156,112,.95));
-      clip-path:polygon(0 0, 100% 0, 50% 100%);
-      transform-origin:top center;
-      transition:transform .65s cubic-bezier(.22,.61,.36,1);
-      z-index:3;
+    .seal-monogram {
+      font-family: var(--font-serif);
+      font-size: 38px;
+      font-weight: 600;
+      color: var(--gold-strong);
+      line-height: 1;
+      transform: translateY(-2px);
+      text-shadow: 0 2px 10px rgba(223,186,107,0.15);
     }
 
-    .env-left{
-      position:absolute;
-      left:0;
-      bottom:0;
-      width:50%;
-      height:72%;
-      background:linear-gradient(135deg, rgba(225,193,154,.92), rgba(173,132,91,.92));
-      clip-path:polygon(0 0, 100% 100%, 0 100%);
-      z-index:2;
+    .badge-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--muted);
+      font-size: 12px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeUp 0.9s 0.45s forwards;
     }
 
-    .env-right{
-      position:absolute;
-      right:0;
-      bottom:0;
-      width:50%;
-      height:72%;
-      background:linear-gradient(225deg, rgba(225,193,154,.92), rgba(173,132,91,.92));
-      clip-path:polygon(100% 0, 100% 100%, 0 100%);
-      z-index:2;
+    .badge-chip::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 12px rgba(223,186,107,0.8);
     }
 
-    .env-bottom{
-      position:absolute;
-      left:0;
-      bottom:0;
-      width:100%;
-      height:62%;
-      background:linear-gradient(180deg, rgba(190,148,106,.94), rgba(151,113,78,.96));
-      z-index:1;
+    .couple-names {
+      font-family: var(--font-script);
+      font-size: clamp(48px, 12vw, 74px);
+      line-height: 1.38;
+      color: #fff;
+      text-shadow: 0 4px 18px rgba(0,0,0,0.46);
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 1s 0.55s forwards;
     }
 
-    .env-title{
-      position:absolute;
-      inset:0;
-      z-index:4;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:2px;
-      color:#fff9f3;
-      text-shadow:0 2px 8px rgba(0,0,0,.18);
-      transition:opacity .35s ease, transform .35s ease;
-      padding-top:4px;
+    .romantic-subtext {
+      max-width: 280px;
+      font-family: var(--font-script);
+      font-size: clamp(16px, 4.4vw, 21px);
+      line-height: 2.05;
+      color: var(--muted);
+      text-shadow: 0 2px 8px rgba(0,0,0,0.38);
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 1s 0.7s forwards;
     }
 
-    .env-title .small{
-      font-size:11px;
-      letter-spacing:2px;
-      color:rgba(255,247,235,.88);
+    .title-divider {
+      width: 170px;
+      height: 24px;
+      position: relative;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeUp 1s 0.82s forwards;
     }
 
-    .env-title .big{
-      font-family:"Noto Nastaliq Urdu",serif;
-      font-size:clamp(24px,5vw,30px);
-      line-height:1.8;
+    .title-divider::before,
+    .title-divider::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 68px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(223,186,107,0.75));
     }
 
-    .letter-modal{
-      position:absolute;
-      inset:14px;
-      border-radius:26px;
-      background:linear-gradient(180deg, rgba(18,14,14,.96), rgba(32,23,22,.95));
-      border:1px solid rgba(255,241,223,.10);
-      box-shadow:0 20px 50px rgba(0,0,0,.35);
-      z-index:12;
-      opacity:0;
-      pointer-events:none;
-      transform:translateY(18px) scale(.97);
-      transition:opacity .42s ease, transform .42s ease;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      padding:20px 16px 16px;
+    .title-divider::before { right: 0; }
+    .title-divider::after { left: 0; transform: scaleX(-1); }
+
+    .title-divider span {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      border: 1px solid rgba(223,186,107,0.55);
+      box-shadow: 0 0 0 3px rgba(223,186,107,0.06);
     }
 
-    @supports ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
-      .letter-modal {
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-      }
+    .bottom-widget {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 1s 0.95s forwards;
     }
 
-    .letter-modal.open{
-      opacity:1;
-      pointer-events:auto;
-      transform:translateY(0) scale(1);
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
     }
 
-    .letter-paper{
-      position:relative;
-      width:100%;
-      border-radius:22px;
-      padding:22px 16px 18px;
+    .summary-item {
+      padding: 12px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.07);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .summary-label {
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 1.6px;
+      margin-bottom: 5px;
+    }
+
+    .summary-value {
+      font-size: 13px;
+      color: #fff;
+      font-weight: 500;
+      line-height: 1.7;
+    }
+
+    .action-btn {
+      position: relative;
+      width: 100%;
+      min-height: 56px;
+      border: 1px solid rgba(223, 186, 107, 0.65);
+      border-radius: 999px;
       background:
-        radial-gradient(circle at top, rgba(255,255,255,.05), transparent 35%),
-        linear-gradient(180deg, rgba(255,248,240,.07), rgba(255,248,240,.03));
-      border:1px solid rgba(255,239,219,.09);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01)),
+        rgba(223, 186, 107, 0.03);
+      color: var(--text-light);
+      font: 500 14px var(--font-sans);
+      letter-spacing: 1px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.28);
     }
 
-    .letter-head{
-      font-family:"Noto Nastaliq Urdu",serif;
-      font-size:clamp(24px,5vw,34px);
-      line-height:1.9;
-      color:#fff3e6;
-      margin-bottom:8px;
+    .action-btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, transparent 20%, rgba(255,255,255,0.12) 48%, transparent 75%);
+      transform: translateX(-120%);
+      transition: transform 0.9s ease;
     }
 
-    .letter-desc{
-      font-family:"Noto Nastaliq Urdu",serif;
-      font-size:clamp(17px,4vw,24px);
-      line-height:2;
-      color:rgba(255,237,219,.82);
-      margin-bottom:12px;
+    .action-btn:hover::before {
+      transform: translateX(120%);
     }
 
-    .info-list{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
+    .action-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 36px rgba(223,186,107,0.13);
+      border-color: rgba(241, 207, 135, 0.92);
     }
 
-    .info-item{
-      border-radius:18px;
-      padding:12px 12px 10px;
-      background:linear-gradient(180deg, rgba(255,248,240,.05), rgba(255,248,240,.02));
-      border:1px solid rgba(255,241,223,.08);
+    .action-btn:active {
+      transform: scale(0.985);
     }
 
-    .info-label{
-      font-size:11px;
-      letter-spacing:2px;
-      text-transform:uppercase;
-      color:rgba(255,220,185,.62);
-      margin-bottom:4px;
+    /* ==========================================
+       4. DETAILS MODAL
+       ========================================== */
+    .details-modal {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      background: var(--glass-strong);
+      padding: 34px 22px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(18px) scale(0.98);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      backdrop-filter: blur(26px);
+      -webkit-backdrop-filter: blur(26px);
     }
 
-    .info-value{
-      font-family:"Noto Nastaliq Urdu",serif;
-      font-size:clamp(21px,4.8vw,30px);
-      line-height:1.9;
-      color:#fff5eb;
+    .details-modal.is-open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
     }
 
-    .letter-note{
-      margin-top:12px;
-      font-family:"Noto Nastaliq Urdu",serif;
-      font-size:clamp(16px,3.9vw,22px);
-      line-height:2;
-      color:rgba(255,225,195,.84);
+    .modal-header {
+      text-align: center;
     }
 
-    .close-btn{
-      margin-top:14px;
-      width:100%;
-      height:46px;
-      border:none;
-      border-radius:16px;
-      background:linear-gradient(180deg, rgba(201,160,107,.24), rgba(201,160,107,.12));
-      border:1px solid rgba(255,236,212,.10);
-      color:#fff2e2;
-      font-family:"Vazirmatn",sans-serif;
-      font-size:14px;
-      cursor:pointer;
+    .modal-title {
+      font-family: var(--font-script);
+      font-size: 28px;
+      color: var(--gold-strong);
+      margin-bottom: 10px;
+      text-shadow: 0 0 16px rgba(223,186,107,0.10);
     }
 
-    .envelope-btn.open .env-top{
-      transform:rotateX(180deg);
+    .modal-desc {
+      font-size: 12px;
+      color: var(--muted-dim);
+      margin-bottom: 20px;
+      line-height: 1.8;
     }
 
-    .envelope-btn.open .env-title{
-      opacity:.25;
-      transform:translateY(8px);
+    /* Countdown Styling */
+    .timer-wrap {
+      padding: 14px 10px 12px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.015));
+      border: 1px solid rgba(223,186,107,0.10);
+      margin-bottom: 18px;
     }
 
-    .reveal{
-      opacity:0;
-      transform:translateY(14px);
-      filter:blur(6px);
-      animation:revealUp 0.95s cubic-bezier(.22,.61,.36,1) forwards;
-      will-change:transform, opacity, filter;
+    .timer-grid {
+      direction: ltr;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
     }
 
-    /* فواصل زمانی لود انیمیشن‌ها فشرده‌تر شد تا حس لودینگ سریع‌تر القا شود */
-    .r1{animation-delay:1.2s;}
-    .r2{animation-delay:1.55s;}
-    .r3{animation-delay:1.9s;}
-    .r4{animation-delay:2.25s;}
+    .timer-box {
+      padding: 10px 6px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
 
-    @keyframes revealUp{
-      to{
-        opacity:1;
-        transform:translateY(0);
-        filter:blur(0);
+    .timer-number {
+      display: block;
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .timer-label {
+      display: block;
+      margin-top: 3px;
+      font-size: 10px;
+      color: var(--gold);
+    }
+
+    .timer-status {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Event Info Cards */
+    .details-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .detail-card {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .detail-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(223, 186, 107, 0.08);
+      color: var(--gold-strong);
+      font-size: 18px;
+      border: 1px solid rgba(223, 186, 107, 0.15);
+    }
+
+    .detail-label {
+      font-size: 10px;
+      color: var(--gold);
+      margin-bottom: 4px;
+      letter-spacing: 1px;
+    }
+
+    .detail-value {
+      color: #fff;
+      font-size: 14px;
+      line-height: 1.8;
+      font-weight: 500;
+    }
+
+    .detail-value.script-font {
+      font-family: var(--font-script);
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    /* Modal Navigation buttons */
+    .modal-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .secondary-btn,
+    .close-btn {
+      min-height: 50px;
+      border-radius: 999px;
+      font: 500 13px var(--font-sans);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .secondary-btn {
+      background: rgba(255,255,255,0.035);
+      color: var(--text-light);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .close-btn {
+      background: rgba(223, 186, 107, 0.08);
+      color: var(--gold-strong);
+      border: 1px solid rgba(223, 186, 107, 0.28);
+    }
+
+    .secondary-btn:hover,
+    .close-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    /* Fixed Audio Button */
+    .fixed-music-btn {
+      position: fixed;
+      left: 18px;
+      bottom: 18px;
+      z-index: 10;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(10, 8, 7, 0.74);
+      color: var(--gold-strong);
+      display: grid;
+      place-items: center;
+      font-size: 16px;
+      cursor: pointer;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      transition: var(--transition-smooth);
+    }
+
+    .fixed-music-btn.playing {
+      border-color: rgba(223,186,107,0.5);
+      box-shadow: 0 0 20px rgba(223,186,107,0.18);
+    }
+
+    /* ==========================================
+       5. KEYFRAMES & ANIMATIONS
+       ========================================== */
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
 
-    .music-btn{
-      position:fixed;
-      left:14px;
-      bottom:14px;
-      z-index:30;
-      width:52px;
-      height:52px;
-      border-radius:50%;
-      border:1px solid rgba(255,245,235,.14);
-      background:rgba(20,16,16,.55);
-      color:#fff2e4;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:18px;
-      cursor:pointer;
-      box-shadow:0 16px 34px rgba(0,0,0,.30);
-      transition:transform .2s ease, background .2s ease, box-shadow .2s ease;
-    }
-
-    @supports ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
-      .music-btn {
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+    @keyframes popIn {
+      to {
+        opacity: 1;
+        transform: scale(1);
       }
     }
 
-    .music-btn:active{
-      transform:scale(.96);
+    @keyframes spinClockwise {
+      to { transform: rotate(360deg); }
     }
 
-    .music-btn.playing{
-      background:rgba(201,160,107,.22);
-      box-shadow:0 0 0 6px rgba(201,160,107,.08), 0 18px 34px rgba(0,0,0,.28);
+    @keyframes spinCounter {
+      to { transform: rotate(-360deg); }
     }
 
-    @media (max-width:390px){
-      .card{
-        border-radius:26px;
-        height:min(97svh, 820px);
-      }
-
-      .content{
-        padding:18px 14px 14px;
-      }
-
-      .brand{
-        font-size:17px;
-      }
-
-      .eyebrow{
-        font-size:10px;
-        letter-spacing:2.4px;
-      }
-
-      .names{
-        font-size:clamp(38px,10vw,58px);
-      }
-
-      .subtitle{
-        font-size:clamp(19px,4.8vw,26px);
-      }
-
-      .poem{
-        font-size:clamp(16px,4.1vw,22px);
-        line-height:1.95;
-      }
-
-      .envelope-btn{
-        height:102px;
-      }
-
-      .letter-modal{
-        inset:10px;
-        border-radius:22px;
-        padding:14px 12px 12px;
-      }
-
-      .letter-paper{
-        padding:18px 12px 14px;
-      }
+    @keyframes driftA {
+      to { transform: translate(-14px, 20px); }
     }
 
-    @media (max-height:760px){
-      .content{
-        padding:16px 14px 14px;
+    @keyframes driftB {
+      to { transform: translate(18px, -10px); }
+    }
+
+    /* ==========================================
+       6. RESPONSIVE DESIGN (SMALL DEV)
+       ========================================== */
+    @media (max-width: 380px) {
+      .content-panel {
+        padding: 24px 18px 18px;
       }
 
-      .brand{
-        font-size:16px;
+      .seal-container {
+        width: 120px;
+        height: 120px;
       }
 
-      .names{
-        font-size:clamp(34px,9vw,52px);
+      .seal-center {
+        width: 84px;
+        height: 84px;
       }
 
-      .subtitle{
-        font-size:clamp(18px,4.5vw,24px);
+      .seal-monogram {
+        font-size: 34px;
       }
 
-      .poem{
-        margin-top:6px;
-        font-size:clamp(15px,3.8vw,20px);
-        line-height:1.85;
+      .summary-value {
+        font-size: 12px;
       }
 
-      .envelope-btn{
-        width:min(84vw, 260px);
-        height:95px;
+      .action-btn {
+        min-height: 52px;
+        font-size: 13px;
       }
 
-      .env-title .big{
-        font-size:22px;
+      .timer-grid {
+        gap: 6px;
       }
 
-      .letter-head{
-        font-size:24px;
-      }
-
-      .info-value{
-        font-size:20px;
-      }
-
-      .letter-desc,.letter-note{
-        font-size:16px;
-      }
-
-      .close-btn{
-        height:42px;
+      .timer-number {
+        font-size: 18px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- preload روی metadata برای بارگذاری سریع‌تر ساختار اولیه صفحه و عدم اتلاف ترافیک کاربر -->
+
+  <!-- Ambient Light Effects -->
+  <div class="ambient-blur"></div>
+
+  <!-- Background Audio Element -->
   <audio id="bgm" src="1.mp3" preload="metadata" loop playsinline></audio>
 
-  <div class="ambient"></div>
-
-  <main class="page">
+  <main class="page-wrapper">
     <section class="card">
-      <div class="photo"></div>
-      <div class="vignette"></div>
-      <div class="mist"></div>
-      <div class="grain"></div>
-      <div class="frame"></div>
-      <div class="shine"></div>
+      <!-- Media Elements -->
+      <div class="photo-background"></div>
+      <div class="vignette-effect"></div>
 
-      <div class="content">
-        <div class="top">
-          <div class="brand reveal r1">به نام عشق، به نام روشن‌ترین آغاز</div>
-          <div class="brand-line reveal r1"></div>
-        </div>
+      <!-- Cover Screen -->
+      <div class="content-panel" id="coverPage">
+        <header class="top-brand">
+          <span class="brand-eyebrow">Wedding Invitation</span>
+          <span class="brand-line"></span>
+        </header>
 
-        <div class="center">
-          <div class="eyebrow reveal r1">WEDDING INVITATION</div>
-
-          <div class="names reveal r2">رضا و محدثه</div>
-
-          <div class="subtitle reveal r2">شبی برای عاشقانه‌ترین خاطره</div>
-
-          <div class="poem reveal r3">
-           به سنت عشق <br>
-            گرد هم می آییم<br>
-            آنجا که دوست داشتن<br>
-      تنها کلام زندگی است<br>
-            <span class="accent">شما را به جشنِ عشق‌مان دعوت می‌کنیم</span>
-          </div>
-        </div>
-
-        <div class="envelope-wrap reveal r4">
-          <button class="envelope-btn" id="envelopeBtn" aria-label="نمایش تاریخ و مکان">
-            <div class="envelope-shadow"></div>
-
-            <div class="envelope">
-              <div class="env-bottom"></div>
-              <div class="env-left"></div>
-              <div class="env-right"></div>
-              <div class="env-top"></div>
-
-              <div class="env-title">
-                <div class="small">TOUCH TO OPEN</div>
-                <div class="big">باز کردن دعوتنامه</div>
-              </div>
+        <div class="hero-section">
+          <!-- Monogram Seal -->
+          <div class="seal-container">
+            <div class="seal-ring-outer"></div>
+            <div class="seal-ring-inner"></div>
+            <div class="seal-center">
+              <span class="seal-monogram">R M</span>
             </div>
-          </button>
+          </div>
+
+          <div class="badge-chip">
+            <span>دعوتی برای آغاز یک هم‌سفری جاودانه</span>
+          </div>
+
+          <h1 class="couple-names">رضا و محدثه</h1>
+
+          <div class="title-divider"><span></span></div>
+
+          <p class="romantic-subtext">
+            با شوقِ حضورتان،
+            لحظه‌ی پیوند قلب‌هایمان را
+            در کنار شما جشن می‌گیریم.
+          </p>
         </div>
+
+        <footer class="bottom-widget">
+          <div class="summary-grid">
+            <div class="summary-item">
+              <div class="summary-label">تاریخ</div>
+              <div class="summary-value">جمعه ۱ مهر ۱۴۰۵</div>
+            </div>
+            <div class="summary-item">
+              <div class="summary-label">شهر</div>
+              <div class="summary-value">تبریز</div>
+            </div>
+          </div>
+
+          <button class="action-btn" id="openBtn">ورود به جزئیات مراسم</button>
+        </footer>
       </div>
 
-      <div class="letter-modal" id="letterModal">
-        <div class="letter-paper">
-          <div class="letter-head">دعوتنامه‌ی مراسم</div>
-          <div class="letter-desc">
-            با افتخار و عشق، حضور گرم شما زینت‌بخش این شبِ خاطره‌انگیز خواهد بود
+      <!-- Details Overlay Modal -->
+      <div class="details-modal" id="detailsModal">
+        <header class="modal-header">
+          <h2 class="modal-title">به نام آفریدگار مهر</h2>
+          <p class="modal-desc">
+            شمارش معکوس زنده نسبت به ساعت دستگاه شما تنظیم شده است.
+          </p>
+
+          <!-- Dynamic Countdown Timer -->
+          <div class="timer-wrap">
+            <div class="timer-grid">
+              <div class="timer-box">
+                <span class="timer-number" id="days">00</span>
+                <span class="timer-label">روز</span>
+              </div>
+              <div class="timer-box">
+                <span class="timer-number" id="hours">00</span>
+                <span class="timer-label">ساعت</span>
+              </div>
+              <div class="timer-box">
+                <span class="timer-number" id="minutes">00</span>
+                <span class="timer-label">دقیقه</span>
+              </div>
+              <div class="timer-box">
+                <span class="timer-number" id="seconds">00</span>
+                <span class="timer-label">ثانیه</span>
+              </div>
+            </div>
+            <div class="timer-status" id="timerStatus">در حال محاسبه...</div>
+          </div>
+        </header>
+
+        <!-- Information Cards -->
+        <div class="details-grid">
+          <div class="detail-card">
+            <span class="detail-icon">📅</span>
+            <div>
+              <div class="detail-label">تاریخ مراسم</div>
+              <div class="detail-value script-font">جمعه ۱ مهرماه ۱۴۰۵</div>
+            </div>
           </div>
 
-          <div class="info-list">
-            <div class="info-item">
-              <div class="info-label">DATE</div>
-              <div class="info-value">جمعه ۱ مهر ۱۴۰۵</div>
-            </div>
-
-            <div class="info-item">
-              <div class="info-label">TIME</div>
-              <div class="info-value">از ساعت ۱۷ تا پایان شب</div>
-            </div>
-
-            <div class="info-item">
-              <div class="info-label">LOCATION</div>
-              <div class="info-value">تبریز، ولیعصر، عمارت مجلل</div>
+          <div class="detail-card">
+            <span class="detail-icon">⏰</span>
+            <div>
+              <div class="detail-label">ساعت پذیرایی</div>
+              <div class="detail-value">۱۷:۰۰ تا ۲۳:۰۰</div>
             </div>
           </div>
 
-          <div class="letter-note">
-            حضورتان، امضای زیبای این شبِ به‌یادماندنی خواهد بود
+          <div class="detail-card">
+            <span class="detail-icon">📍</span>
+            <div>
+              <div class="detail-label">مکان برگزاری</div>
+              <div class="detail-value">تبریز، ولیعصر، عمارت مجلل</div>
+            </div>
           </div>
-
-          <button class="close-btn" id="closeLetter">بستن دعوتنامه</button>
         </div>
+
+        <footer class="modal-actions">
+          <button class="secondary-btn" id="musicToggle">پخش / توقف موزیک</button>
+          <button class="close-btn" id="closeBtn">بازگشت</button>
+        </footer>
       </div>
     </section>
   </main>
 
-  <button class="music-btn" id="musicBtn" aria-label="پخش یا توقف موسیقی">♫</button>
+  <!-- External floating Music Switch -->
+  <button class="fixed-music-btn" id="musicBtn" aria-label="کنترل موسیقی">♫</button>
 
+  <!-- ==========================================
+       7. JAVASCRIPT CONTROLLER
+       ========================================== -->
   <script>
-    const audio = document.getElementById('bgm');
-    const musicBtn = document.getElementById('musicBtn');
-    const envelopeBtn = document.getElementById('envelopeBtn');
-    const letterModal = document.getElementById('letterModal');
-    const closeLetter = document.getElementById('closeLetter');
-
-    let audioUnlocked = false;
-
-    // تابع اصلی برای پخش موزیک
-    async function playAudio() {
-      if (audioUnlocked) return;
-      try {
-        audio.volume = 1;
-        await audio.play();
-        musicBtn.classList.add('playing');
-        audioUnlocked = true;
-        removeAllInteractions();
-      } catch (err) {
-        console.log("پخش خودکار توسط مرورگر مسدود شد؛ منتظر اولین تعامل کاربر...");
-      }
-    }
-
-    // باز کردن دعوتنامه و تلاش مجدد برای پخش موزیک (در صورت مسدود بودن قبلی)
-    function openLetter() {
-      envelopeBtn.classList.add('open');
-      
-      if (!audioUnlocked || audio.paused) {
-        playAudio();
-      }
-
-      setTimeout(() => {
-        letterModal.classList.add('open');
-      }, 320);
-    }
-
-    function closeLetterModal() {
-      letterModal.classList.remove('open');
-      setTimeout(() => {
-        envelopeBtn.classList.remove('open');
-      }, 180);
-    }
-
-    // کنترل دستی موزیک از طریق دکمه شناور
-    musicBtn.addEventListener('click', async (e) => {
-      e.stopPropagation();
-      try {
-        if (audio.paused) {
-          await audio.play();
-          musicBtn.classList.add('playing');
-          audioUnlocked = true;
-        } else {
-          audio.pause();
-          musicBtn.classList.remove('playing');
-        }
-      } catch (e) {
-        console.error(e);
-      }
-    });
-
-    envelopeBtn.addEventListener('click', openLetter);
-    closeLetter.addEventListener('click', closeLetterModal);
-
-    letterModal.addEventListener('click', (e) => {
-      if (e.target === letterModal) {
-        closeLetterModal();
-      }
-    });
-
-    // مدیریت تعامل اولیه کاربر با صفحه برای شروع پخش موزیک
-    const unlockEvents = ['touchstart', 'click', 'scroll'];
+    // Elements Selection
+    const audio = document.getElementById("bgm");
+    const musicBtn = document.getElementById("musicBtn");
+    const musicToggle = document.getElementById("musicToggle");
+    const openBtn = document.getElementById("openBtn");
+    const closeBtn = document.getElementById("closeBtn");
+    const detailsModal = document.getElementById("detailsModal");
     
-    function handleInteraction() {
-      playAudio();
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
+    const statusEl = document.getElementById("timerStatus");
+
+    // Audio State
+    let isPlaying = false;
+
+    // Wedding Target Time: 17:00 Tabriz Time (UTC+03:30) => 13:30 UTC
+    const TARGET_UTC_MS = new Date("2026-09-23T13:30:00Z").getTime();
+
+    // Helper functions
+    const padNumber = (num) => String(num).padStart(2, "0");
+
+    function updateCountdown() {
+      const diff = TARGET_UTC_MS - Date.now();
+
+      if (diff <= 0) {
+        [daysEl, hoursEl, minutesEl, secondsEl].forEach(el => el.textContent = "00");
+        statusEl.textContent = "زمان مراسم فرا رسیده یا به پایان رسیده است.";
+        return;
+      }
+
+      const days = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff % 86400000) / 3600000);
+      const minutes = Math.floor((diff % 3600000) / 60000);
+      const seconds = Math.floor((diff % 60000) / 1000);
+
+      daysEl.textContent = padNumber(days);
+      hoursEl.textContent = padNumber(hours);
+      minutesEl.textContent = padNumber(minutes);
+      secondsEl.textContent = padNumber(seconds);
+      statusEl.textContent = "تا آغاز مراسم، زمان باقی مانده است.";
     }
 
-    function removeAllInteractions() {
-      unlockEvents.forEach(event => {
-        window.removeEventListener(event, handleInteraction, { passive: true });
-      });
+    async function playMusic() {
+      if (isPlaying) return;
+      try {
+        audio.volume = 0.65;
+        await audio.play();
+        isPlaying = true;
+        musicBtn.classList.add("playing");
+      } catch (err) {
+        console.warn("پخش خودکار توسط مرورگر متوقف شد؛ منتظر تعامل کاربر.");
+      }
     }
 
-    // ثبت شنوندگان رویداد برای اولین لمس یا اسکرول
-    unlockEvents.forEach(event => {
-      window.addEventListener(event, handleInteraction, { once: true, passive: true });
+    function pauseMusic() {
+      audio.pause();
+      isPlaying = false;
+      musicBtn.classList.remove("playing");
+    }
+
+    function toggleMusic() {
+      audio.paused ? playMusic() : pauseMusic();
+    }
+
+    // Modal Events
+    openBtn.addEventListener("click", () => {
+      detailsModal.classList.add("is-open");
+      playMusic();
     });
 
-    // تلاش برای پخش خودکار بلافاصله پس از لود شدن
-    window.addEventListener('DOMContentLoaded', playAudio);
-    window.addEventListener('load', playAudio);
+    closeBtn.addEventListener("click", () => {
+      detailsModal.classList.remove("is-open");
+    });
+
+    // Music Trigger Events
+    musicBtn.addEventListener("click", toggleMusic);
+    musicToggle.addEventListener("click", toggleMusic);
+
+    // Audio Auto-Unlock for Mobile Devices
+    const unlockEvents = ["touchstart", "click", "scroll"];
+    function unlockAudio() {
+      playMusic();
+      unlockEvents.forEach(event => window.removeEventListener(event, unlockAudio, { passive: true }));
+    }
+    unlockEvents.forEach(event => window.addEventListener(event, unlockAudio, { passive: true }));
+
+    // Initialization
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
   </script>
 </body>
 </html>
