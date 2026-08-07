@@ -85,6 +85,51 @@
       isolation: isolate;
     }
 
+    /* استایل‌های مربوط به محافظت از اسکرین‌شات در صفحه اول */
+    .screenshot-shield {
+      position: absolute;
+      inset: 0;
+      background: #050403;
+      z-index: 99;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .screenshot-shield p {
+      color: var(--gold-light);
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    /* جلوگیری از کپی و درگ تصاویر در صفحه اول */
+    #coverPage {
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    #coverPage img {
+      pointer-events: none;
+      -webkit-touch-callout: none;
+    }
+
+    /* فعال شدن شیلد محافظتی */
+    .protected .screenshot-shield {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .protected .hero-section,
+    .protected .photo-container {
+      filter: blur(40px) brightness(0.1);
+    }
+
     .ambient-light {
       position: fixed;
       inset: 0;
@@ -138,6 +183,7 @@
       inset: 0;
       z-index: 1;
       overflow: hidden;
+      transition: filter 0.4s ease;
     }
 
     .photo-background-img {
@@ -287,6 +333,7 @@
       justify-content: center;
       margin: auto 0;
       gap: 10px;
+      transition: filter 0.4s ease;
     }
 
     .seal {
@@ -786,7 +833,6 @@
       line-height: 1.8;
     }
 
-    /* افکت درخشش طلایی دور کل تقویم هنگام زدن روز دوم */
     .calendar-card {
       position: relative;
       margin-top: 15px;
@@ -941,7 +987,6 @@
       animation: pulseRing 2.3s ease-in-out infinite;
     }
 
-    /* انیمیشن لرزش و تپش هیجانی هنگام لمس روز عقد */
     .day.special.celebrate {
       animation: hapticTab 0.5s ease-out;
     }
@@ -968,7 +1013,6 @@
       line-height: 1.25;
     }
 
-    /* استایل باکس توضیحات پایین با افکت متحرک تغییر محتوا */
     .calendar-event {
       position: relative;
       z-index: 1;
@@ -1065,7 +1109,6 @@
         0 0 18px rgba(220,181,106,0.18);
     }
 
-    /* سیستم پارتیکل‌ها و افکت انفجار قلب و اکلیل */
     .party-spark {
       position: absolute;
       pointer-events: none;
@@ -1143,7 +1186,6 @@
       }
     }
 
-    /* موبایل‌های کوچک */
     @media (max-height: 700px) {
       .page-wrapper {
         padding: 6px;
@@ -1288,8 +1330,17 @@
 
   <audio id="bgMusic" src="1.mp3" preload="metadata" loop playsinline></audio>
 
-  <main class="page-wrapper">
-    <section class="card">
+  <main class="page-wrapper" id="mainWrapper">
+    <section class="card" id="mainCard">
+
+      <!-- لایه محافظ اسکرین‌شات (مخصوص صفحه اول) -->
+      <div class="screenshot-shield" id="screenshotShield">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#dcb56a" stroke-width="1.5">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        <p>به منظور حفظ حریم خصوصی، امکان تصویربرداری از این صفحه وجود ندارد.</p>
+      </div>
 
       <div class="photo-container">
         <img
@@ -1601,6 +1652,8 @@
     const secondsElement = document.getElementById("seconds");
     const timerStatus = document.getElementById("timerStatus");
 
+    const mainCard = document.getElementById("mainCard");
+
     /*
       تاریخ مراسم:
       ۲ دی ۱۴۰۵ برابر با ۲۳ دسامبر ۲۰۲۶ است.
@@ -1656,22 +1709,29 @@
       musicButton.classList.remove("playing");
     }
 
+    // متغیر کمکی برای چک کردن اینکه آیا کاربر در صفحه اول (کاور) است یا خیر
+    let isAtCoverPage = true;
+
     openDetailsButton.addEventListener("click", () => {
       detailsModal.classList.add("is-open");
+      isAtCoverPage = false; // خروج از صفحه اول
       playMusic();
     });
 
     closeDetailsButton.addEventListener("click", () => {
       detailsModal.classList.remove("is-open");
       calendarModal.classList.remove("is-open");
+      isAtCoverPage = true; // بازگشت به صفحه اول
     });
 
     openCalendarButton.addEventListener("click", () => {
       calendarModal.classList.add("is-open");
+      isAtCoverPage = false;
     });
 
     closeCalendarButton.addEventListener("click", () => {
       calendarModal.classList.remove("is-open");
+      isAtCoverPage = false; // کاربر هنوز در مودال جزئیات است
     });
 
     musicButton.addEventListener("click", () => {
@@ -1682,12 +1742,8 @@
       }
     });
 
-    /*
-      تلاش برای فعال‌سازی موسیقی بعد از اولین تعامل کاربر
-    */
     function unlockMusic() {
       playMusic();
-
       window.removeEventListener("click", unlockMusic);
       window.removeEventListener("touchstart", unlockMusic);
     }
@@ -1707,6 +1763,58 @@
 
     /*
       ======================================================
+      سیستم ضد اسکرین‌شات و تاری صفحه (فقط برای صفحه اول)
+      ======================================================
+    */
+    
+    // ۱. فعال کردن لایه محافظ به محض اینکه صفحه فوکوس خود را از دست داد (مثلاً کاربر دکمه پاور+صدا را زد یا نوتیفیکیشن پایین کشید)
+    window.addEventListener("blur", () => {
+      if (isAtCoverPage) {
+        mainCard.classList.add("protected");
+      }
+    });
+
+    window.addEventListener("focus", () => {
+      // برگشتن به حالت عادی بعد از فوکوس مجدد
+      mainCard.classList.remove("protected");
+    });
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden && isAtCoverPage) {
+        mainCard.classList.add("protected");
+      } else {
+        mainCard.classList.remove("protected");
+      }
+    });
+
+    // ۲. مسدود کردن کلیک راست و منوی لمسی روی تصاویر صفحه اول
+    document.getElementById("coverPage").addEventListener("contextmenu", (e) => {
+      e.preventDefault();
+    });
+
+    // ۳. غیرفعال کردن کلیدهای میانبر اسکرین‌شات دسکتاپ (مانند PrintScreen و کلیدهای توسعه‌دهنده)
+    window.addEventListener("keyup", (e) => {
+      if (isAtCoverPage && (e.key === "PrintScreen" || e.keyCode === 44)) {
+        navigator.clipboard.writeText(""); // پاک کردن کلیپ‌بورد در صورت امکان
+        mainCard.classList.add("protected");
+        setTimeout(() => mainCard.classList.remove("protected"), 2000);
+      }
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (isAtCoverPage) {
+        // مسدود کردن Ctrl+S, Ctrl+P, Ctrl+U و F12 برای جلوگیری از ذخیره یا اینسپکت صفحه اول
+        if (
+          (e.ctrlKey && (e.key === "s" || e.key === "p" || e.key === "u" || e.key === "c")) ||
+          e.key === "F12"
+        ) {
+          e.preventDefault();
+        }
+      }
+    });
+
+    /*
+      ======================================================
       ایونت جذاب و انفجار ذرات با زدن روی ۲ دی (روز عقد)
       ======================================================
     */
@@ -1717,18 +1825,15 @@
     const eventDesc = document.getElementById("eventDesc");
 
     weddingDay.addEventListener("click", (e) => {
-      // ایجاد افکت لرزش روی خودِ خانه‌ی تقویم
       weddingDay.classList.remove("celebrate");
-      void weddingDay.offsetWidth; // نیروی مرورگر برای ریست انیمیشن
+      void weddingDay.offsetWidth; 
       weddingDay.classList.add("celebrate");
 
-      // ایجاد درخشش کلی دور کارت تقویم
       calendarCard.classList.add("glow-active");
       setTimeout(() => {
         calendarCard.classList.remove("glow-active");
       }, 2000);
 
-      // افکت تغییر متن و ظاهر باکس توضیحات
       calendarEventBox.classList.add("activated");
       eventTitle.style.opacity = 0;
       eventDesc.style.opacity = 0;
@@ -1740,11 +1845,9 @@
         eventDesc.style.opacity = 1;
       }, 250);
 
-      // ساخت افکت انفجاری ذرات (اکلیل‌های طلایی و قلب‌های شناور)
       const rect = weddingDay.getBoundingClientRect();
       const cardRect = calendarModal.getBoundingClientRect();
       
-      // نقطه مبدا مرکز روز دوم نسبت به مدال تقویم
       const originX = rect.left + rect.width / 2 - cardRect.left;
       const originY = rect.top + rect.height / 2 - cardRect.top;
 
@@ -1758,7 +1861,6 @@
       const spark = document.createElement("span");
       spark.className = "party-spark";
       
-      // تصمیم تصادفی برای گلبرگ، قلب یا اکلیل ستاره‌ای بودن ذره
       const isHeart = Math.random() > 0.5;
       
       if (isHeart) {
@@ -1771,7 +1873,6 @@
         spark.style.fontSize = (Math.random() * 7 + 6) + "px";
       }
 
-      // تعیین جهت تصادفی حرکت (انفجاری در زاویه ۳۶۰ درجه)
       const angle = Math.random() * Math.PI * 2;
       const distance = Math.random() * 85 + 45;
       const tx = Math.cos(angle) * distance;
@@ -1786,7 +1887,6 @@
 
       calendarModal.appendChild(spark);
 
-      // حذف ذره بعد از اتمام انیمیشن
       setTimeout(() => {
         spark.remove();
       }, 1100);
