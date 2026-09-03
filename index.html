@@ -25,9 +25,9 @@
       --gold-light: #f2d493;
       --gold-dark: #99783d;
       --white: #fffaf2;
-      --muted: rgba(255, 250, 242, 0.66);
-      --muted-2: rgba(255, 250, 242, 0.44);
-      --glass: rgba(15, 12, 9, 0.62);
+      --muted: rgba(255, 250, 242, 0.70);
+      --muted-2: rgba(255, 250, 242, 0.45);
+      --glass: rgba(15, 12, 9, 0.65);
       --glass-dark: rgba(10, 8, 6, 0.96);
 
       --font-fa: "Vazirmatn", sans-serif;
@@ -80,7 +80,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 10px;
+      padding: 12px;
       position: relative;
       isolation: isolate;
     }
@@ -125,7 +125,7 @@
       overflow: hidden;
       border-radius: 32px;
       background: var(--glass);
-      border: 1px solid rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(220, 181, 106, 0.18);
       box-shadow:
         0 28px 80px rgba(0, 0, 0, 0.82),
         inset 0 1px 0 rgba(255, 255, 255, 0.10);
@@ -165,9 +165,9 @@
         linear-gradient(
           180deg,
           rgba(4, 3, 2, 0.20) 0%,
-          rgba(4, 3, 2, 0.22) 30%,
-          rgba(4, 3, 2, 0.55) 63%,
-          rgba(4, 3, 2, 0.97) 100%
+          rgba(4, 3, 2, 0.25) 30%,
+          rgba(4, 3, 2, 0.60) 65%,
+          rgba(4, 3, 2, 0.98) 100%
         );
     }
 
@@ -202,50 +202,23 @@
       animation: floatParticle linear infinite;
     }
 
-    .particle:nth-child(1) {
-      right: 14%;
-      bottom: 24%;
-      animation-duration: 7s;
-      animation-delay: 1s;
-    }
+    .particle:nth-child(1) { right: 14%; bottom: 24%; animation-duration: 7s; animation-delay: 1s; }
+    .particle:nth-child(2) { right: 72%; bottom: 37%; animation-duration: 8s; animation-delay: 2.5s; }
+    .particle:nth-child(3) { right: 32%; bottom: 16%; animation-duration: 6s; animation-delay: 0.8s; }
+    .particle:nth-child(4) { right: 82%; bottom: 58%; animation-duration: 9s; animation-delay: 4s; }
+    .particle:nth-child(5) { right: 52%; bottom: 49%; animation-duration: 7.5s; animation-delay: 3s; }
 
-    .particle:nth-child(2) {
-      right: 72%;
-      bottom: 37%;
-      animation-duration: 8s;
-      animation-delay: 2.5s;
-    }
-
-    .particle:nth-child(3) {
-      right: 32%;
-      bottom: 16%;
-      animation-duration: 6s;
-      animation-delay: 0.8s;
-    }
-
-    .particle:nth-child(4) {
-      right: 82%;
-      bottom: 58%;
-      animation-duration: 9s;
-      animation-delay: 4s;
-    }
-
-    .particle:nth-child(5) {
-      right: 52%;
-      bottom: 49%;
-      animation-duration: 7.5s;
-      animation-delay: 3s;
-    }
-
+    /* صفحه اصلی دعوت‌نامه */
     .content-panel {
       position: relative;
       z-index: 4;
       width: 100%;
       height: 100%;
-      padding: 26px 20px 21px;
+      padding: 24px 20px 20px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      align-items: center;
       text-align: center;
     }
 
@@ -286,12 +259,12 @@
       align-items: center;
       justify-content: center;
       margin: auto 0;
-      gap: 10px;
+      gap: 8px;
     }
 
     .seal {
-      width: 112px;
-      height: 112px;
+      width: 104px;
+      height: 104px;
       position: relative;
       display: grid;
       place-items: center;
@@ -318,14 +291,14 @@
     }
 
     .seal::after {
-      inset: 9px;
+      inset: 8px;
       border: 1px dashed rgba(220, 181, 106, 0.30);
       animation: rotateReverse 22s linear infinite;
     }
 
     .seal-center {
-      width: 76px;
-      height: 76px;
+      width: 72px;
+      height: 72px;
       display: grid;
       place-items: center;
       border-radius: 50%;
@@ -343,26 +316,25 @@
     .monogram {
       direction: ltr;
       font-family: var(--font-en);
-      font-size: 31px;
+      font-size: 29px;
       font-weight: 600;
       letter-spacing: 2px;
       color: var(--gold-light);
-      transform: translateY(-2px);
+      transform: translateY(-1px);
     }
 
     .small-badge {
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      padding: 6px 13px;
-      border: 1px solid rgba(255,255,255,0.10);
+      padding: 5px 14px;
+      border: 1px solid rgba(220, 181, 106, 0.25);
       border-radius: 999px;
-      background: rgba(255,255,255,0.045);
-      color: rgba(255,255,255,0.70);
+      background: rgba(220, 181, 106, 0.06);
+      color: var(--gold-light);
       font-size: 10px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.12);
       backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
       opacity: 0;
       transform: translateY(8px);
       animation: fadeUp 0.8s 0.44s forwards;
@@ -381,7 +353,7 @@
       margin-top: 2px;
       color: #fffaf2;
       font-family: var(--font-script);
-      font-size: clamp(43px, 11vw, 66px);
+      font-size: clamp(42px, 11vw, 64px);
       line-height: 1.45;
       font-weight: 700;
       text-shadow:
@@ -393,7 +365,7 @@
     }
 
     .divider {
-      width: 155px;
+      width: 150px;
       height: 18px;
       position: relative;
       opacity: 0;
@@ -406,7 +378,7 @@
       content: "";
       position: absolute;
       top: 50%;
-      width: 59px;
+      width: 58px;
       height: 1px;
       background: linear-gradient(
         90deg,
@@ -415,32 +387,26 @@
       );
     }
 
-    .divider::before {
-      right: 0;
-    }
-
-    .divider::after {
-      left: 0;
-      transform: scaleX(-1);
-    }
+    .divider::before { right: 0; }
+    .divider::after { left: 0; transform: scaleX(-1); }
 
     .divider-center {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 9px;
-      height: 9px;
+      width: 8px;
+      height: 8px;
       transform: translate(-50%, -50%) rotate(45deg);
       border: 1px solid var(--gold);
-      background: rgba(220,181,106,0.13);
-      box-shadow: 0 0 10px rgba(220,181,106,0.18);
+      background: rgba(220,181,106,0.15);
+      box-shadow: 0 0 10px rgba(220,181,106,0.22);
     }
 
     .romantic-text {
       max-width: 300px;
-      color: rgba(255, 250, 242, 0.80);
+      color: rgba(255, 250, 242, 0.85);
       font-family: var(--font-script);
-      font-size: clamp(16px, 4vw, 19px);
+      font-size: clamp(16px, 4vw, 18.5px);
       line-height: 2;
       text-shadow: 0 2px 10px rgba(0,0,0,0.40);
       opacity: 0;
@@ -451,19 +417,19 @@
     .love-note {
       position: relative;
       max-width: 305px;
-      margin-top: 1px;
-      padding: 10px 15px;
-      border-radius: 18px;
-      color: rgba(255, 250, 242, 0.79);
-      font-size: 11.5px;
-      line-height: 1.9;
+      margin-top: 2px;
+      padding: 9px 14px;
+      border-radius: 16px;
+      color: rgba(255, 250, 242, 0.82);
+      font-size: 11px;
+      line-height: 1.85;
       background:
         linear-gradient(
           135deg,
           rgba(255,255,255,0.065),
           rgba(255,255,255,0.018)
         );
-      border: 1px solid rgba(220, 181, 106, 0.18);
+      border: 1px solid rgba(220, 181, 106, 0.20);
       box-shadow:
         inset 0 1px 0 rgba(255,255,255,0.07),
         0 12px 26px rgba(0,0,0,0.16);
@@ -481,7 +447,7 @@
       right: 18px;
       color: var(--gold-light);
       font-size: 13px;
-      background: #21180e;
+      background: #1c150e;
       padding: 0 5px;
       line-height: 1;
     }
@@ -492,9 +458,10 @@
     }
 
     .bottom-widget {
+      width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 11px;
+      gap: 10px;
       opacity: 0;
       transform: translateY(10px);
       animation: fadeUp 0.9s 1s forwards;
@@ -503,19 +470,19 @@
     .summary-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 9px;
+      gap: 8px;
     }
 
     .summary-item {
-      padding: 9px 8px;
-      border-radius: 15px;
+      padding: 8px;
+      border-radius: 14px;
       background: rgba(255,255,255,0.035);
-      border: 1px solid rgba(255,255,255,0.075);
+      border: 1px solid rgba(220,181,106,0.15);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
     }
 
     .summary-label {
-      margin-bottom: 3px;
+      margin-bottom: 2px;
       color: var(--gold-light);
       font-size: 9px;
     }
@@ -528,18 +495,19 @@
 
     .action-btn {
       width: 100%;
-      min-height: 50px;
+      min-height: 48px;
       border: 1px solid rgba(235, 193, 105, 0.58);
       border-radius: 999px;
       color: var(--white);
       background:
         linear-gradient(
           110deg,
-          rgba(220,181,106,0.035),
-          rgba(220,181,106,0.12),
-          rgba(220,181,106,0.035)
+          rgba(220,181,106,0.05),
+          rgba(220,181,106,0.18),
+          rgba(220,181,106,0.05)
         );
-      font-size: 12px;
+      font-size: 12.5px;
+      font-weight: 500;
       cursor: pointer;
       box-shadow:
         0 12px 28px rgba(0,0,0,0.26),
@@ -557,7 +525,7 @@
       right: -40%;
       width: 25%;
       transform: skewX(-20deg);
-      background: rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.2);
       transition: right 0.6s var(--ease);
     }
 
@@ -570,18 +538,19 @@
       transform: translateY(-2px);
       box-shadow:
         0 15px 32px rgba(0,0,0,0.32),
-        0 0 24px rgba(220,181,106,0.11);
+        0 0 24px rgba(220,181,106,0.15);
     }
 
+    /* Modal / صفحه جزئیات */
     .modal {
       position: absolute;
       inset: 0;
       z-index: 10;
-      padding: 22px 18px 18px;
+      padding: 24px 18px 18px;
       display: flex;
       flex-direction: column;
       background:
-        radial-gradient(circle at 50% 0%, rgba(220,181,106,0.10), transparent 36%),
+        radial-gradient(circle at 50% 0%, rgba(220,181,106,0.12), transparent 36%),
         var(--glass-dark);
       backdrop-filter: blur(28px);
       -webkit-backdrop-filter: blur(28px);
@@ -607,7 +576,7 @@
     .modal-title {
       color: var(--gold-light);
       font-family: var(--font-script);
-      font-size: 25px;
+      font-size: 26px;
       line-height: 1.8;
     }
 
@@ -621,8 +590,8 @@
     .timer-box-wrap {
       margin-top: 13px;
       padding: 10px 8px;
-      border-radius: 17px;
-      border: 1px solid rgba(220,181,106,0.14);
+      border-radius: 18px;
+      border: 1px solid rgba(220,181,106,0.18);
       background: rgba(255,255,255,0.025);
     }
 
@@ -635,14 +604,14 @@
 
     .timer-item {
       padding: 6px 2px;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.025);
-      border: 1px solid rgba(255,255,255,0.045);
+      border-radius: 11px;
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(255,255,255,0.05);
     }
 
     .timer-number {
       display: block;
-      color: #fff;
+      color: var(--gold-light);
       font-size: 16px;
       font-weight: 700;
     }
@@ -650,14 +619,15 @@
     .timer-label {
       display: block;
       margin-top: 1px;
-      color: var(--gold-light);
+      color: var(--muted);
       font-size: 8.5px;
     }
 
     .timer-status {
       margin-top: 7px;
-      color: var(--muted-2);
+      color: var(--gold-light);
       font-size: 9.5px;
+      opacity: 0.85;
     }
 
     .details-grid {
@@ -668,29 +638,29 @@
 
     .detail-card {
       display: grid;
-      grid-template-columns: 35px 1fr;
+      grid-template-columns: 36px 1fr;
       align-items: center;
       gap: 10px;
-      padding: 9px 11px;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.025);
-      border: 1px solid rgba(255,255,255,0.055);
+      padding: 9px 12px;
+      border-radius: 15px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(220,181,106,0.14);
     }
 
     .detail-icon {
-      width: 35px;
-      height: 35px;
+      width: 36px;
+      height: 36px;
       display: grid;
       place-items: center;
       border-radius: 50%;
       color: var(--gold-light);
-      background: rgba(220,181,106,0.08);
-      border: 1px solid rgba(220,181,106,0.15);
-      font-size: 14px;
+      background: rgba(220,181,106,0.09);
+      border: 1px solid rgba(220,181,106,0.18);
+      font-size: 15px;
     }
 
     .detail-label {
-      color: var(--gold);
+      color: var(--gold-light);
       font-size: 8.5px;
       margin-bottom: 2px;
     }
@@ -703,338 +673,33 @@
 
     .detail-value.script-font {
       font-family: var(--font-script);
-      font-size: 14px;
+      font-size: 15px;
+      color: var(--gold-light);
     }
 
     .modal-actions {
-      display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
-      gap: 9px;
+      display: block;
       margin-top: auto;
       padding-top: 14px;
     }
 
-    .secondary-btn,
     .close-btn {
+      width: 100%;
       min-height: 48px;
       border-radius: 999px;
       cursor: pointer;
-      font-size: 11.5px;
-      transition: 0.3s var(--ease);
-    }
-
-    .secondary-btn {
-      color: var(--gold-light);
-      background: rgba(220,181,106,0.09);
-      border: 1px solid rgba(220,181,106,0.32);
-    }
-
-    .close-btn {
-      color: var(--white);
-      background: rgba(255,255,255,0.035);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .secondary-btn:hover,
-    .close-btn:hover {
-      transform: translateY(-2px);
-    }
-
-    /* Calendar */
-    .calendar-modal {
-      background:
-        radial-gradient(circle at 50% 7%, rgba(220,181,106,0.16), transparent 32%),
-        linear-gradient(180deg, #191108 0%, #0b0806 52%, #080605 100%);
-    }
-
-    .calendar-hero {
-      text-align: center;
-      padding-top: 1px;
-    }
-
-    .calendar-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      color: var(--gold-light);
-      font-size: 9px;
-      letter-spacing: 1.4px;
-      margin-bottom: 5px;
-    }
-
-    .calendar-kicker::before,
-    .calendar-kicker::after {
-      content: "";
-      width: 22px;
-      height: 1px;
-      background: var(--gold-dark);
-    }
-
-    .calendar-title {
-      color: var(--gold-light);
-      font-family: var(--font-script);
-      font-size: 29px;
-      line-height: 1.7;
-      text-shadow: 0 3px 16px rgba(220,181,106,0.18);
-    }
-
-    .calendar-caption {
-      max-width: 300px;
-      margin: 1px auto 0;
-      color: rgba(255,255,255,0.62);
-      font-size: 10.5px;
-      line-height: 1.8;
-    }
-
-    /* افکت درخشش طلایی دور کل تقویم هنگام زدن روز دوم */
-    .calendar-card {
-      position: relative;
-      margin-top: 15px;
-      padding: 15px 13px 13px;
-      border-radius: 25px;
-      background:
-        linear-gradient(
-          145deg,
-          rgba(255,255,255,0.09),
-          rgba(255,255,255,0.025) 45%,
-          rgba(220,181,106,0.045)
-        );
-      border: 1px solid rgba(220, 181, 106, 0.23);
-      box-shadow:
-        0 22px 50px rgba(0, 0, 0, 0.42),
-        inset 0 1px 0 rgba(255, 255, 255, 0.11);
-      transition: box-shadow 0.6s var(--ease), border-color 0.6s var(--ease);
-    }
-
-    .calendar-card.glow-active {
-      border-color: rgba(220, 181, 106, 0.7);
-      box-shadow:
-        0 0 25px rgba(220, 181, 106, 0.35),
-        0 22px 50px rgba(0, 0, 0, 0.5);
-    }
-
-    .calendar-card::before {
-      content: "";
-      position: absolute;
-      inset: 7px;
-      border-radius: 19px;
-      border: 1px solid rgba(255,255,255,0.035);
-      pointer-events: none;
-    }
-
-    .calendar-top {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 13px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .calendar-arrow {
-      width: 33px;
-      height: 33px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      color: var(--gold-light);
-      background: rgba(255,255,255,0.035);
-      border: 1px solid rgba(220,181,106,0.18);
-      font-size: 19px;
-    }
-
-    .month-title {
-      flex: 1;
-      text-align: center;
-    }
-
-    .month-fa {
-      color: var(--gold-light);
-      font-family: var(--font-script);
-      font-size: 23px;
-      line-height: 1.45;
-    }
-
-    .month-en {
-      direction: ltr;
-      margin-top: 1px;
-      color: var(--muted-2);
-      font-family: var(--font-en);
-      font-size: 14px;
-      letter-spacing: 1px;
-    }
-
-    .calendar-subtitle {
-      position: relative;
-      z-index: 1;
-      margin-bottom: 10px;
-      color: rgba(255,255,255,0.50);
-      font-size: 9.5px;
-      text-align: center;
-    }
-
-    .calendar-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 6px;
-    }
-
-    .weekday {
-      padding-bottom: 8px;
-      color: var(--gold-light);
-      font-size: 9px;
-      text-align: center;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-    }
-
-    .day {
-      position: relative;
-      min-width: 0;
-      aspect-ratio: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 13px;
-      color: rgba(255,255,255,0.82);
-      background: rgba(255,255,255,0.025);
-      border: 1px solid rgba(255,255,255,0.045);
       font-size: 12px;
-      transition: 0.25s ease;
+      font-weight: 500;
+      transition: 0.3s var(--ease);
+      color: var(--white);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(220,181,106,0.28);
     }
 
-    .day:hover {
-      border-color: rgba(220,181,106,0.42);
-      background: rgba(220,181,106,0.08);
-    }
-
-    .day.dim {
-      color: rgba(255,255,255,0.25);
-      background: rgba(255,255,255,0.012);
-    }
-
-    .day.special {
-      color: #241606;
-      font-weight: 700;
-      background:
-        radial-gradient(circle at 30% 22%, rgba(255,255,255,0.72), transparent 25%),
-        linear-gradient(145deg, #f5d997 0%, #d49b38 100%);
-      border-color: rgba(255,230,163,0.88);
-      box-shadow:
-        0 8px 18px rgba(220,181,106,0.32),
-        inset 0 1px 0 rgba(255,255,255,0.55);
-      transform: scale(1.07);
-      z-index: 2;
-      cursor: pointer;
-    }
-
-    .day.special::after {
-      content: "";
-      position: absolute;
-      inset: -4px;
-      border-radius: 16px;
-      border: 1px solid rgba(242,212,147,0.28);
-      animation: pulseRing 2.3s ease-in-out infinite;
-    }
-
-    /* انیمیشن لرزش و تپش هیجانی هنگام لمس روز عقد */
-    .day.special.celebrate {
-      animation: hapticTab 0.5s ease-out;
-    }
-
-    @keyframes hapticTab {
-      0% { transform: scale(1.07); }
-      30% { transform: scale(1.22); }
-      50% { transform: scale(0.96); }
-      80% { transform: scale(1.12); }
-      100% { transform: scale(1.07); }
-    }
-
-    .event-tag {
-      position: absolute;
-      left: 50%;
-      bottom: 3px;
-      transform: translateX(-50%);
-      white-space: nowrap;
-      padding: 2px 5px;
-      border-radius: 999px;
-      color: #281a07;
-      background: rgba(255,255,255,0.40);
-      font-size: 6.5px;
-      line-height: 1.25;
-    }
-
-    /* استایل باکس توضیحات پایین با افکت متحرک تغییر محتوا */
-    .calendar-event {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      margin-top: 13px;
-      padding: 9px 10px;
-      border-radius: 14px;
-      background: rgba(220,181,106,0.09);
-      border: 1px solid rgba(220,181,106,0.18);
-      transition: background 0.4s var(--ease), border-color 0.4s var(--ease), transform 0.4s var(--ease);
-    }
-
-    .calendar-event.activated {
-      background: rgba(242, 212, 147, 0.18);
-      border-color: rgba(242, 212, 147, 0.45);
-      transform: scale(1.02);
-    }
-
-    .event-icon {
-      width: 29px;
-      height: 29px;
-      display: grid;
-      place-items: center;
-      flex: 0 0 auto;
-      border-radius: 50%;
-      color: #251704;
-      background: linear-gradient(145deg, #f6dc9d, #d29b3e);
-      font-size: 13px;
-      transition: transform 0.5s var(--ease);
-    }
-
-    .calendar-event.activated .event-icon {
-      transform: rotate(360deg) scale(1.1);
-    }
-
-    .event-text {
-      text-align: right;
-      transition: opacity 0.25s ease;
-    }
-
-    .event-title {
-      color: var(--gold-light);
-      font-size: 10px;
-      font-weight: 600;
-    }
-
-    .event-description {
-      margin-top: 2px;
-      color: rgba(255,255,255,0.58);
-      font-size: 8.5px;
-      line-height: 1.5;
-    }
-
-    .calendar-footer {
-      margin-top: auto;
-      padding-top: 15px;
-      text-align: center;
-    }
-
-    .calendar-footer-text {
-      color: rgba(255,255,255,0.56);
-      font-family: var(--font-script);
-      font-size: 14px;
-      line-height: 1.9;
+    .close-btn:hover {
+      background: rgba(220,181,106,0.14);
+      border-color: var(--gold-light);
+      transform: translateY(-2px);
     }
 
     .music-btn {
@@ -1048,8 +713,8 @@
       place-items: center;
       border-radius: 50%;
       color: var(--gold-light);
-      background: rgba(10,8,6,0.78);
-      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(10,8,6,0.82);
+      border: 1px solid rgba(220,181,106,0.25);
       box-shadow: 0 10px 24px rgba(0,0,0,0.38);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
@@ -1059,29 +724,10 @@
     }
 
     .music-btn.playing {
-      border-color: rgba(220,181,106,0.55);
+      border-color: rgba(220,181,106,0.6);
       box-shadow:
         0 10px 24px rgba(0,0,0,0.38),
-        0 0 18px rgba(220,181,106,0.18);
-    }
-
-    /* سیستم پارتیکل‌ها و افکت انفجار قلب و اکلیل */
-    .party-spark {
-      position: absolute;
-      pointer-events: none;
-      z-index: 100;
-      animation: explodeSpark 1.1s cubic-bezier(0.1, 0.8, 0.25, 1) forwards;
-    }
-
-    @keyframes explodeSpark {
-      0% {
-        transform: translate(0, 0) scale(0.8) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translate(var(--tx), var(--ty)) scale(1.3) rotate(var(--rot));
-        opacity: 0;
-      }
+        0 0 18px rgba(220,181,106,0.2);
     }
 
     @keyframes fadeUp {
@@ -1115,35 +761,18 @@
         opacity: 0;
         transform: translateY(20px) scale(0.7);
       }
-
       20% {
         opacity: 0.75;
       }
-
       80% {
         opacity: 0.4;
       }
-
       100% {
         opacity: 0;
         transform: translateY(-130px) scale(1.15);
       }
     }
 
-    @keyframes pulseRing {
-      0%,
-      100% {
-        opacity: 0.35;
-        transform: scale(0.98);
-      }
-
-      50% {
-        opacity: 0.8;
-        transform: scale(1.04);
-      }
-    }
-
-    /* موبایل‌های کوچک */
     @media (max-height: 700px) {
       .page-wrapper {
         padding: 6px;
@@ -1155,7 +784,7 @@
       }
 
       .content-panel {
-        padding: 17px 15px 15px;
+        padding: 18px 15px 15px;
       }
 
       .seal {
@@ -1174,12 +803,12 @@
       }
 
       .couple-names {
-        font-size: 39px;
+        font-size: 38px;
         line-height: 1.35;
       }
 
       .romantic-text {
-        font-size: 14px;
+        font-size: 13.5px;
         line-height: 1.75;
       }
 
@@ -1198,34 +827,11 @@
       }
 
       .summary-value {
-        font-size: 10px;
+        font-size: 10.5px;
       }
 
-      .action-btn {
-        min-height: 45px;
-      }
-
-      .calendar-card {
-        margin-top: 9px;
-        padding: 11px 10px 10px;
-      }
-
-      .calendar-grid {
-        gap: 4px;
-      }
-
-      .day {
-        border-radius: 10px;
-        font-size: 11px;
-      }
-
-      .event-tag {
-        font-size: 5.5px;
-        bottom: 2px;
-      }
-
-      .calendar-footer-text {
-        font-size: 12px;
+      .action-btn, .close-btn {
+        min-height: 44px;
       }
     }
 
@@ -1252,32 +858,6 @@
       .love-note {
         max-width: 280px;
         font-size: 9.5px;
-      }
-
-      .calendar-title {
-        font-size: 25px;
-      }
-
-      .calendar-card {
-        padding-left: 8px;
-        padding-right: 8px;
-      }
-
-      .calendar-grid {
-        gap: 3px;
-      }
-
-      .day {
-        font-size: 10px;
-        border-radius: 8px;
-      }
-
-      .calendar-event {
-        padding: 7px;
-      }
-
-      .event-description {
-        font-size: 8px;
       }
     }
   </style>
@@ -1344,7 +924,7 @@
 
           <div class="love-note">
             همراهی شما، این شب را برای ما
-            <strong>به‌یادماندنی‌تر و زیباتر</strong>
+            <strong>به یادماندنی‌تر و زیباتر</strong>
             خواهد کرد.
           </div>
 
@@ -1355,7 +935,7 @@
           <div class="summary-grid">
             <div class="summary-item">
               <div class="summary-label">تاریخ مراسم</div>
-              <div class="summary-value">۲ دی ۱۴۰۵</div>
+              <div class="summary-value">۲۸ آبان ۱۴۰۵</div>
             </div>
 
             <div class="summary-item">
@@ -1419,7 +999,7 @@
             <div>
               <div class="detail-label">تاریخ مراسم</div>
               <div class="detail-value script-font">
-                چهارشنبه، ۲ دی‌ماه ۱۴۰۵
+                پنج‌شنبه، ۲۸ آبان‌ماه ۱۴۰۵
               </div>
             </div>
           </div>
@@ -1429,7 +1009,7 @@
             <div>
               <div class="detail-label">ساعت پذیرایی</div>
               <div class="detail-value">
-                ۱۷:۰۰ تا ۲۳:۰۰
+                ۱۶:۰۰ الی ۱۹:۰۰
               </div>
             </div>
           </div>
@@ -1439,7 +1019,7 @@
             <div>
               <div class="detail-label">مکان برگزاری</div>
               <div class="detail-value">
-                تبریز، کوی ولیعصر، انتهای خیابان مخابرات، عمارت مجلل
+                تبریز، جاده باسمنج، اول ویلایی باغ یعقوب (ولیعصر)، مجتمع پذیرایی فخریه
               </div>
             </div>
           </div>
@@ -1447,130 +1027,8 @@
         </div>
 
         <div class="modal-actions">
-          <button class="secondary-btn" id="openCalendar">
-            📅 نمایش در تقویم
-          </button>
-
           <button class="close-btn" id="closeDetails">
             بازگشت
-          </button>
-        </div>
-
-      </div>
-
-      <!-- صفحه تقویم -->
-      <div class="modal calendar-modal" id="calendarModal">
-
-        <div class="calendar-hero">
-          <div class="calendar-kicker">
-            OUR SPECIAL DAY
-          </div>
-
-          <h2 class="calendar-title">
-            روزی برای همیشه
-          </h2>
-
-          <p class="calendar-caption">
-            این روز را در تقویم قلبتان به یادگار نگه دارید؛
-            روز آغاز یک فصل تازه برای رضا و محدثه.
-          </p>
-        </div>
-
-        <div class="calendar-card" id="calendarCard">
-
-          <div class="calendar-top">
-            <button class="calendar-arrow" type="button">‹</button>
-
-            <div class="month-title">
-              <div class="month-fa">دی ۱۴۰۵</div>
-              <div class="month-en">DECEMBER 2026</div>
-            </div>
-
-            <button class="calendar-arrow" type="button">›</button>
-          </div>
-
-          <div class="calendar-subtitle">
-            رجب ۱۴۴۸ · یک خاطره‌ی ماندگار
-          </div>
-
-          <div class="calendar-grid">
-
-            <div class="weekday">ش</div>
-            <div class="weekday">ی</div>
-            <div class="weekday">د</div>
-            <div class="weekday">س</div>
-            <div class="weekday">چ</div>
-            <div class="weekday">پ</div>
-            <div class="weekday">ج</div>
-
-            <div class="day dim">۲۸</div>
-            <div class="day dim">۲۹</div>
-            <div class="day dim">۳۰</div>
-            <div class="day">۱</div>
-            <div class="day special" id="weddingDay">
-              ۲
-              <span class="event-tag">روز عقد</span>
-            </div>
-            <div class="day">۳</div>
-            <div class="day">۴</div>
-
-            <div class="day">۵</div>
-            <div class="day">۶</div>
-            <div class="day">۷</div>
-            <div class="day">۸</div>
-            <div class="day">۹</div>
-            <div class="day">۱۰</div>
-            <div class="day">۱۱</div>
-
-            <div class="day">۱۲</div>
-            <div class="day">۱۳</div>
-            <div class="day">۱۴</div>
-            <div class="day">۱۵</div>
-            <div class="day">۱۶</div>
-            <div class="day">۱۷</div>
-            <div class="day">۱۸</div>
-
-            <div class="day">۱۹</div>
-            <div class="day">۲۰</div>
-            <div class="day">۲۱</div>
-            <div class="day">۲۲</div>
-            <div class="day">۲۳</div>
-            <div class="day">۲۴</div>
-            <div class="day">۲۵</div>
-
-            <div class="day">۲۶</div>
-            <div class="day">۲۷</div>
-            <div class="day">۲۸</div>
-            <div class="day">۲۹</div>
-            <div class="day">۳۰</div>
-            <div class="day dim">۱</div>
-            <div class="day dim">۲</div>
-
-          </div>
-
-          <div class="calendar-event" id="calendarEventBox">
-            <div class="event-icon" id="eventBoxIcon">♥</div>
-
-            <div class="event-text" id="eventBoxText">
-              <div class="event-title" id="eventTitle">
-                ۲ دی‌ماه · روز عقد رضا و محدثه
-              </div>
-
-              <div class="event-description" id="eventDesc">
-                روزی که قصه‌ی ما، رنگی تازه به خود می‌گیرد.
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="calendar-footer">
-          <div class="calendar-footer-text">
-            منتظر دیدار شما در زیباترین شب زندگی‌مان هستیم
-          </div>
-
-          <button class="close-btn" id="closeCalendar">
-            بازگشت به جزئیات
           </button>
         </div>
 
@@ -1586,11 +1044,7 @@
   <script>
     const openDetailsButton = document.getElementById("openDetails");
     const closeDetailsButton = document.getElementById("closeDetails");
-    const openCalendarButton = document.getElementById("openCalendar");
-    const closeCalendarButton = document.getElementById("closeCalendar");
-
     const detailsModal = document.getElementById("detailsModal");
-    const calendarModal = document.getElementById("calendarModal");
 
     const musicButton = document.getElementById("musicButton");
     const backgroundMusic = document.getElementById("bgMusic");
@@ -1603,9 +1057,9 @@
 
     /*
       تاریخ مراسم:
-      ۲ دی ۱۴۰۵ برابر با ۲۳ دسامبر ۲۰۲۶ است.
+      ۲۸ آبان ۱۴۰۵ برابر با ۱۹ نوامبر ۲۰۲۶ - ساعت ۱۶:۰۰
     */
-    const ceremonyDate = new Date("2026-12-23T17:00:00").getTime();
+    const ceremonyDate = new Date("2026-11-19T16:00:00").getTime();
 
     function twoDigits(value) {
       return String(value).padStart(2, "0");
@@ -1663,15 +1117,6 @@
 
     closeDetailsButton.addEventListener("click", () => {
       detailsModal.classList.remove("is-open");
-      calendarModal.classList.remove("is-open");
-    });
-
-    openCalendarButton.addEventListener("click", () => {
-      calendarModal.classList.add("is-open");
-    });
-
-    closeCalendarButton.addEventListener("click", () => {
-      calendarModal.classList.remove("is-open");
     });
 
     musicButton.addEventListener("click", () => {
@@ -1682,9 +1127,6 @@
       }
     });
 
-    /*
-      تلاش برای فعال‌سازی موسیقی بعد از اولین تعامل کاربر
-    */
     function unlockMusic() {
       playMusic();
 
@@ -1704,93 +1146,6 @@
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
-
-    /*
-      ======================================================
-      ایونت جذاب و انفجار ذرات با زدن روی ۲ دی (روز عقد)
-      ======================================================
-    */
-    const weddingDay = document.getElementById("weddingDay");
-    const calendarCard = document.getElementById("calendarCard");
-    const calendarEventBox = document.getElementById("calendarEventBox");
-    const eventTitle = document.getElementById("eventTitle");
-    const eventDesc = document.getElementById("eventDesc");
-
-    weddingDay.addEventListener("click", (e) => {
-      // ایجاد افکت لرزش روی خودِ خانه‌ی تقویم
-      weddingDay.classList.remove("celebrate");
-      void weddingDay.offsetWidth; // نیروی مرورگر برای ریست انیمیشن
-      weddingDay.classList.add("celebrate");
-
-      // ایجاد درخشش کلی دور کارت تقویم
-      calendarCard.classList.add("glow-active");
-      setTimeout(() => {
-        calendarCard.classList.remove("glow-active");
-      }, 2000);
-
-      // افکت تغییر متن و ظاهر باکس توضیحات
-      calendarEventBox.classList.add("activated");
-      eventTitle.style.opacity = 0;
-      eventDesc.style.opacity = 0;
-
-      setTimeout(() => {
-        eventTitle.textContent = "رضا و محدثه · پیوند دو قلب 💖";
-        eventDesc.textContent = "آغازِ یک هم‌سفری ابدی و عاشقانه در حضور شما...";
-        eventTitle.style.opacity = 1;
-        eventDesc.style.opacity = 1;
-      }, 250);
-
-      // ساخت افکت انفجاری ذرات (اکلیل‌های طلایی و قلب‌های شناور)
-      const rect = weddingDay.getBoundingClientRect();
-      const cardRect = calendarModal.getBoundingClientRect();
-      
-      // نقطه مبدا مرکز روز دوم نسبت به مدال تقویم
-      const originX = rect.left + rect.width / 2 - cardRect.left;
-      const originY = rect.top + rect.height / 2 - cardRect.top;
-
-      const particleCount = 24;
-      for (let i = 0; i < particleCount; i++) {
-        createSpark(originX, originY);
-      }
-    });
-
-    function createSpark(x, y) {
-      const spark = document.createElement("span");
-      spark.className = "party-spark";
-      
-      // تصمیم تصادفی برای گلبرگ، قلب یا اکلیل ستاره‌ای بودن ذره
-      const isHeart = Math.random() > 0.5;
-      
-      if (isHeart) {
-        spark.innerHTML = "♥";
-        spark.style.color = Math.random() > 0.5 ? "#f6c6d3" : "#dcb56a";
-        spark.style.fontSize = (Math.random() * 8 + 9) + "px";
-      } else {
-        spark.innerHTML = "✦";
-        spark.style.color = "#f2d493";
-        spark.style.fontSize = (Math.random() * 7 + 6) + "px";
-      }
-
-      // تعیین جهت تصادفی حرکت (انفجاری در زاویه ۳۶۰ درجه)
-      const angle = Math.random() * Math.PI * 2;
-      const distance = Math.random() * 85 + 45;
-      const tx = Math.cos(angle) * distance;
-      const ty = Math.sin(angle) * distance;
-      const rot = Math.random() * 360 + 120;
-
-      spark.style.left = `${x}px`;
-      spark.style.top = `${y}px`;
-      spark.style.setProperty("--tx", `${tx}px`);
-      spark.style.setProperty("--ty", `${ty}px`);
-      spark.style.setProperty("--rot", `${rot}deg`);
-
-      calendarModal.appendChild(spark);
-
-      // حذف ذره بعد از اتمام انیمیشن
-      setTimeout(() => {
-        spark.remove();
-      }, 1100);
-    }
   </script>
 </body>
 </html>
